@@ -1,0 +1,60 @@
+{
+    "type": "Ext.Container",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "customerscontainer",
+        "designer|userClassName": "CustomersContainer",
+        "id": "customers",
+        "layout": "fit"
+    },
+    "designerId": "6ca22f77-09fd-4557-9d8c-d790587f63cb",
+    "cn": [
+        {
+            "type": "Ext.dataview.List",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "emptyText": "No hay clientes para mostrar",
+                "grouped": false,
+                "id": "dataList",
+                "loadingText": "Cargando...",
+                "onItemDisclosure": true,
+                "store": "MyStore"
+            },
+            "designerId": "30fa54d1-2e9a-4b21-a895-e63dfb8dd289",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "itemTpl",
+                        "implHandler": [
+                            "<div> {name} </div>"
+                        ]
+                    },
+                    "designerId": "52d5a65c-0247-4a54-92d0-ccddd726ad4b"
+                },
+                {
+                    "type": "Ext.dataview.IndexBar",
+                    "reference": {
+                        "name": "indexBar",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "designerId": "ecaa6493-2e70-4fea-98a6-a8abd003da7c"
+                }
+            ]
+        }
+    ]
+}

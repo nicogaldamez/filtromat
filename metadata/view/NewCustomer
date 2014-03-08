@@ -1,0 +1,131 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "newcustomer",
+        "designer|userClassName": "NewCustomer",
+        "id": "newcustomer"
+    },
+    "designerId": "f38310c4-bc77-4c02-a286-9abc1f34ede9",
+    "cn": [
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "centered": false,
+                "title": null
+            },
+            "designerId": "6880bd28-6844-4e56-bfa5-02d76a3b3f0d",
+            "cn": [
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "nombreTxtField",
+                        "label": "Nombre",
+                        "placeHolder": "Ingrese el nombre"
+                    },
+                    "designerId": "e19f87b7-ef22-4d3e-852a-bd58687e4f00"
+                },
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "razonSocialTxtField",
+                        "label": "R. Social",
+                        "labelWrap": true,
+                        "placeHolder": "Ingrese el nombre"
+                    },
+                    "designerId": "99177149-885a-4ad8-b6d1-67feb53667b1"
+                },
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "cuitTxtField",
+                        "label": "CUIT",
+                        "placeHolder": "Ingrese el CUIT"
+                    },
+                    "designerId": "ef5ca38c-afcb-46bf-adf1-85018a1ea148"
+                },
+                {
+                    "type": "Ext.field.Email",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "emailTxtField",
+                        "label": "Correo",
+                        "placeHolder": "correo@ejemplo.com"
+                    },
+                    "designerId": "d6dbb68e-9a96-477f-83fc-c10586bb385d"
+                },
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "telefonoTxtField",
+                        "label": "Tel",
+                        "placeHolder": "Ingrese el teléfono"
+                    },
+                    "designerId": "b39fb973-7fbf-44bf-8af1-aa3b7f87a4f6"
+                },
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "domicilioTxtField",
+                        "label": "Domicilio",
+                        "placeHolder": "Ingrese el domicilio"
+                    },
+                    "designerId": "090879d5-b4ce-4e59-ac85-73fab288aa05"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|uiInterfaceName": "confirm",
+                "margin": 20,
+                "text": "Guardar",
+                "ui": "confirm"
+            },
+            "designerId": "4226dfd1-66b2-4b9f-aaed-c0fe14f0e8fb"
+        }
+    ]
+}

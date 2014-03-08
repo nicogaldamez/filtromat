@@ -1,0 +1,30 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "Customers"
+        ],
+        "models": [
+            "Customer"
+        ],
+        "name": "FiltroMat",
+        "stores": [
+            "MyStore",
+            "CustomerStore"
+        ],
+        "views": [
+            "MainTabPanel",
+            "CustomersContainer",
+            "NewCustomer",
+            "CustomersNav",
+            "Orders",
+            "NewOrder"
+        ]
+    },
+    "designerId": "application"
+}

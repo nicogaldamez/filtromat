@@ -1,0 +1,87 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "neworder",
+        "designer|userClassName": "NewOrder",
+        "showAnimation": ""
+    },
+    "designerId": "9f372a98-1387-426f-9aa3-c030ec7ffd0f",
+    "cn": [
+        {
+            "type": "Ext.TitleBar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "title": "Nuevo Pedido"
+            },
+            "designerId": "37230ca4-d456-4f19-89cd-cc0495669c18"
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|uiInterfaceName": "confirm",
+                "margin": 20,
+                "text": "Guardar",
+                "ui": "confirm"
+            },
+            "designerId": "56f39c97-05ff-4cb5-8dbe-0c0d200fa535"
+        },
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "centered": false,
+                "docked": "top",
+                "title": null
+            },
+            "designerId": "c742a1a4-3b0c-4656-b604-11dbba2599de",
+            "cn": [
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "nombreTxtField1",
+                        "label": "Cliente"
+                    },
+                    "designerId": "0378f43d-b693-442f-b2f3-fe8348e706c1"
+                },
+                {
+                    "type": "Ext.field.Number",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "razonSocialTxtField1",
+                        "label": "Cantidad",
+                        "labelWrap": true
+                    },
+                    "designerId": "fdf6951d-07c8-4a5c-b7d3-b22b841d80b3"
+                }
+            ]
+        }
+    ]
+}

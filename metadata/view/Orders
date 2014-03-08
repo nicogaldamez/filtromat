@@ -1,0 +1,43 @@
+{
+    "type": "Ext.dataview.List",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "orders",
+        "designer|userClassName": "Orders"
+    },
+    "designerId": "7eba907c-db6e-4000-800c-c28990937b42",
+    "cn": [
+        {
+            "type": "Ext.XTemplate",
+            "reference": {
+                "name": "itemTpl",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "itemTpl",
+                "implHandler": [
+                    "<div>List Item {string}</div>"
+                ]
+            },
+            "designerId": "0fe6366e-2431-4068-be0f-4b831e692f86"
+        },
+        {
+            "type": "Ext.TitleBar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "title": "Pedidos"
+            },
+            "designerId": "854b469b-7270-4b7a-a931-c4c530aacf3a"
+        }
+    ]
+}

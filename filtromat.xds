@@ -1,0 +1,73 @@
+{
+    "name": "filtromat",
+    "settings": {
+        "cmd": {
+            "license": "commercial",
+            "cmdVersion": "4.0.2.67",
+            "frameworkVersion": "2.3.1.410"
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "iPhone",
+                "builtIn": true,
+                "height": 480,
+                "width": 320
+            },
+            "viewportOrientation": "portrait"
+        },
+        "urlPrefix": "http://localhost:1841/",
+        "exportPath": "/Users/nicogaldamez/Documents/Desarrollo/Sencha/Demo",
+        "spacesToIndent": 4,
+        "sdkPath": "",
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "displayfield-ExtBox1-1332-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1382-inputEl": "Not Installed",
+        "lastBuildSelection": {
+            "value": "androidBuild",
+            "display": "Build Android app"
+        },
+        "displayfield-ExtBox1-1388-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1438-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1488-inputEl": "Not Installed"
+    },
+    "xdsVersion": "3.0.2",
+    "xdsBuild": 1375,
+    "schemaVersion": 1,
+    "upgradeVersion": 300000000004,
+    "framework": "touch23",
+    "viewOrderMap": {
+        "view": [
+            "6ca22f77-09fd-4557-9d8c-d790587f63cb",
+            "f38310c4-bc77-4c02-a286-9abc1f34ede9",
+            "4f82c516-d4f6-4830-be57-c6d05ae94e1d",
+            "7eba907c-db6e-4000-800c-c28990937b42",
+            "9f372a98-1387-426f-9aa3-c030ec7ffd0f",
+            "defe65d4-f987-42e3-8df5-ae388c50918f"
+        ],
+        "store": [
+            "808bd577-2200-4f9c-bb67-0904fcdf0df7",
+            "fcfa2b03-e87a-4afd-8a3f-b3e58c2cbba2"
+        ],
+        "controller": [
+            "a487a950-a3b2-4d1e-8a14-393a2cb2786f"
+        ],
+        "model": [
+            "2ee41bd3-1145-4f51-bc98-5d7ad93bd9bb"
+        ],
+        "resource": [
+            "04a088f9-07be-4175-b359-48f3b23c5a8d",
+            "389b65d2-17fb-485e-ae88-b09f134a518a",
+            "58a564ea-0de7-410a-92cd-d332564846b9",
+            "11b22b47-eda8-44e3-924d-77c905d85066",
+            "4470c2f1-7a93-430e-8e66-675d38b27ae9",
+            "9dfe8da9-4191-4834-bf79-983d8af2f695"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

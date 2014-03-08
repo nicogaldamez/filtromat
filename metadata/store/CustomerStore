@@ -1,0 +1,43 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "customerstore",
+        "designer|userClassName": "CustomerStore",
+        "model": "Customer",
+        "storeId": "CustomerStore"
+    },
+    "designerId": "fcfa2b03-e87a-4afd-8a3f-b3e58c2cbba2",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "http://filtromat-filtromat.rhcloud.com/rest/customers"
+            },
+            "designerId": "fbe47b78-991c-42cd-959f-77a204ed9366",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "rootProperty": "customers"
+                    },
+                    "designerId": "207289ca-47d0-44f0-93bd-4f6d1a19b34b"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,64 @@
+{
+    "type": "Ext.navigation.View",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "defaultBackButtonText": "Clientes",
+        "designer|userAlias": "customersnav",
+        "designer|userClassName": "CustomersNav",
+        "id": "customersnav",
+        "useTitleForBackButtonText": true
+    },
+    "designerId": "4f82c516-d4f6-4830-be57-c6d05ae94e1d",
+    "cn": [
+        {
+            "type": "Ext.navigation.Bar",
+            "reference": {
+                "name": "navigationBar",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "centered": false,
+                "docked": "top",
+                "items": [
+                    "[",
+                    "    {",
+                    "        xtype: 'button',",
+                    "        text: 'Nuevo',",
+                    "        align: 'right',",
+                    "        id:'newCustomerBtn'",
+                    "    }",
+                    "]"
+                ]
+            },
+            "configAlternates": {
+                "items": "array"
+            },
+            "designerId": "be405e63-01f9-43f5-90e6-353b9cd06fa5",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "items",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Clientes"
+            },
+            "designerId": "3b30b84a-5c14-4d92-93ef-6642702b3028",
+            "masterInstanceId": "6ca22f77-09fd-4557-9d8c-d790587f63cb"
+        }
+    ]
+}
