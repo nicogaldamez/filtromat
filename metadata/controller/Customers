@@ -1,0 +1,349 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "customers",
+        "designer|userClassName": "Customers"
+    },
+    "designerId": "a487a950-a3b2-4d1e-8a14-393a2cb2786f",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "editCustomerBtn",
+                "selector": "button#editCustomerBtn"
+            },
+            "designerId": "e5ab34ef-d54b-477e-8c4f-c03e3b6356ad"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "newCustomerBtn",
+                "selector": "button#newCustomerBtn"
+            },
+            "designerId": "f85e1cdf-942d-4ef9-928c-964e86f1c435"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#newCustomerBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "onNewCustomerTap",
+                "implHandler": [
+                    "navView = Ext.ComponentQuery.query('customersnav')[0];",
+                    "navView.push({",
+                    "                xtype: 'newcustomer',",
+                    "                title: 'Nuevo Cliente'",
+                    "            });",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "e098ce02-f961-475e-87b8-8a8d549608d9"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "customersNav",
+                "selector": "customersnav",
+                "xtype": "Ext.navigation.Bar"
+            },
+            "designerId": "a79745db-fca6-45c4-b9ff-3a5c46be4a95"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "navigationview",
+                "designer|targetType": "Ext.navigation.View",
+                "fn": "onNavigationviewActiveItemChange",
+                "implHandler": [
+                    "var newCustomerBtn = this.getNewCustomerBtn();",
+                    "var editCustomerBtn = this.getEditCustomerBtn();",
+                    "",
+                    "newCustomerBtn.hide();",
+                    "editCustomerBtn.hide();",
+                    "",
+                    "if (value.id == 'customers') {",
+                    "  newCustomerBtn.show();",
+                    "} else if (value.id == 'customerdetail') {",
+                    "  editCustomerBtn.show();",
+                    "}"
+                ],
+                "name": "activeitemchange"
+            },
+            "designerId": "07dd2032-a654-4a05-99f3-b3ea0cea1726"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "saveCustomerBtn",
+                "selector": "button#saveCustomerBtn",
+                "xtype": "Ext.Button"
+            },
+            "designerId": "c323468a-96c0-4693-aec9-89880823c2fb"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "saveCustomerBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "onSaveCustomerBtnTap",
+                "implHandler": [
+                    "var newCustomerForm = this.getNewCustomerForm();",
+                    "var values = newCustomerForm.getValues();",
+                    "var store = Ext.getStore('CustomerStore');",
+                    "var record = newCustomerForm.getRecord();",
+                    "",
+                    "var newRecord = (record === null);",
+                    "",
+                    "// Si es un registro nuevo limpio el key",
+                    "if (newRecord) {",
+                    "    record = Ext.create(\"FiltroMat.model.Customer\", values);",
+                    "    record.id = record.internalId = record.data.key = '';",
+                    "} else {",
+                    "    record.set(values);",
+                    "}",
+                    "",
+                    "errs = record.validate();",
+                    "if (!errs.isValid()) {",
+                    "    Ext.Msg.alert('Error', 'Verifique que cargó correctamente los campos');",
+                    "} else {",
+                    "    me = this;",
+                    "    record.save({",
+                    "        success: function() {",
+                    "            if (newRecord) {",
+                    "                store.add(record);",
+                    "                var recordData = record;",
+                    "            } else {",
+                    "                // Actualizo el store",
+                    "                var recordData = store.getById(record.id);",
+                    "                recordData.set(values);",
+                    "                me.getCustomerDetail().setData(recordData.data);",
+                    "            }",
+                    "",
+                    "            // Vuelvo a la pantalla de clientes",
+                    "            navView = Ext.ComponentQuery.query('customersnav')[0];",
+                    "            navView.pop();",
+                    "        },",
+                    "        error: function() {",
+                    "            Ext.Msg.alert('Error', 'Ocurrió un error al guardar el cliente');",
+                    "        }",
+                    "    });",
+                    "",
+                    "",
+                    "}",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "2b0a1066-81c6-4977-bb4f-380fde763230"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "newCustomerForm",
+                "selector": "#newCustomerForm",
+                "xtype": null
+            },
+            "designerId": "d6dfddab-3725-46ea-9632-5db6f317a3d4"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "deleteCustomerBtn",
+                "selector": "#deleteCustomerBtn",
+                "xtype": "Ext.Button"
+            },
+            "designerId": "6b4d80fa-8319-4ecb-be03-a88df96b4311"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "customersList",
+                "selector": "#customersList"
+            },
+            "designerId": "bfb776fb-5ab1-4363-82ca-e74c1c3585e2"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "list",
+                "designer|targetType": "Ext.dataview.List",
+                "fn": "onListItemSingletap",
+                "implHandler": [
+                    "navView = Ext.ComponentQuery.query('customersnav')[0];",
+                    "",
+                    "var customerDetail = Ext.create('FiltroMat.view.CustomerDetail');",
+                    "customerDetail.setData(record.getData());",
+                    "navView.push(customerDetail);"
+                ],
+                "name": "itemsingletap"
+            },
+            "designerId": "d5b681d6-7439-4346-bfee-f039faf4723e"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "searchCustomer",
+                "selector": "#searchCustomer"
+            },
+            "designerId": "620dc0dc-4f7b-40c8-9a3e-11d4f77c09b6"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "searchCustomer",
+                "designer|targetType": "Ext.field.Text",
+                "fn": "onSearchCustomer",
+                "implHandler": [
+                    "var value = textfield.getValue();",
+                    "var store = Ext.getStore('CustomerStore');",
+                    "store.clearFilter();",
+                    "store.filter('name', value);"
+                ],
+                "name": "keyup"
+            },
+            "designerId": "c4a6662d-484d-4b0d-b5bb-a44184eaa486"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "deleteCustomerBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "onDeleteCustomerBtnTap",
+                "implHandler": [
+                    "var data = this.getCustomerDetail().getData();",
+                    "var store = Ext.getStore(\"CustomerStore\");",
+                    "var record = store.getById(data.key);",
+                    "record.id = record.data.key;",
+                    "",
+                    "// Elimino el registro",
+                    "record.erase({",
+                    "     success: function() {",
+                    "        // Vuelvo a la pantalla de clientes si se borra correctamente",
+                    "        navView = Ext.ComponentQuery.query('customersnav')[0];",
+                    "        navView.pop();",
+                    "    }",
+                    "});"
+                ],
+                "name": "tap"
+            },
+            "designerId": "5810579b-6221-4e84-acde-d9610cf1805f"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoCreate": true,
+                "ref": "customerDetail",
+                "selector": "#customerdetail",
+                "xtype": "Ext.Panel"
+            },
+            "designerId": "21e1e942-d9a7-4b11-9c7b-b462d63ea5de"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#editCustomerBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "onEditCustomer",
+                "implHandler": [
+                    "var data = this.getCustomerDetail().getData();",
+                    "var store = Ext.getStore(\"CustomerStore\");",
+                    "var record = store.getById(data.key);",
+                    "record.id = record.data.key;",
+                    "",
+                    "var editCustomer = Ext.create('FiltroMat.view.NewCustomer');",
+                    "editCustomer.setRecord(record);",
+                    "navView = Ext.ComponentQuery.query('customersnav')[0];",
+                    "navView.push(editCustomer);"
+                ],
+                "name": "tap"
+            },
+            "designerId": "f9d9f544-b889-4487-9639-1e22232ee250"
+        }
+    ]
+}
