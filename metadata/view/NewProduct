@@ -1,0 +1,93 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "newproduct",
+        "designer|userClassName": "NewProduct",
+        "id": "newProductForm"
+    },
+    "designerId": "ebb1138b-91b4-43a2-a6d5-cc79494df049",
+    "cn": [
+        {
+            "type": "Ext.form.FieldSet",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "centered": false,
+                "id": "newProductFieldset",
+                "title": null
+            },
+            "designerId": "d7161dec-6fef-440b-ac4f-9d093d5bb538",
+            "cn": [
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "productName",
+                        "label": "Nombre",
+                        "name": "name",
+                        "placeHolder": "Ingrese el nombre"
+                    },
+                    "designerId": "32f63e78-f7c9-4dbf-97f0-618716ee4f12"
+                },
+                {
+                    "type": "Ext.field.TextArea",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "productDescription",
+                        "label": "Descripción",
+                        "labelWrap": true,
+                        "name": "description"
+                    },
+                    "designerId": "cdfd6b76-5057-465e-b94a-236daefd44fc"
+                },
+                {
+                    "type": "Ext.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "productPrice",
+                        "label": "Precio",
+                        "name": "currentPrice",
+                        "placeHolder": "Precio actual"
+                    },
+                    "designerId": "116d373b-7cd9-479d-9056-0dca65746220"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|uiInterfaceName": "confirm",
+                "id": "saveProductBtn",
+                "margin": "20 20 10",
+                "text": "Guardar",
+                "ui": "confirm"
+            },
+            "designerId": "00f09c7b-0a02-42d6-9e32-c75f1ad8f97b"
+        }
+    ]
+}

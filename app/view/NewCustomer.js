@@ -24,16 +24,18 @@ Ext.define('FiltroMat.view.NewCustomer', {
     ],
 
     config: {
-        id: 'newcustomer',
+        id: 'newCustomerForm',
         items: [
             {
                 xtype: 'fieldset',
                 centered: false,
+                id: 'newCustomerFieldset',
                 items: [
                     {
                         xtype: 'textfield',
-                        id: 'nombreTxtField',
+                        id: 'name',
                         label: 'Nombre',
+                        name: 'name',
                         placeHolder: 'Ingrese el nombre'
                     },
                     {
@@ -41,41 +43,64 @@ Ext.define('FiltroMat.view.NewCustomer', {
                         id: 'razonSocialTxtField',
                         label: 'R. Social',
                         labelWrap: true,
+                        name: 'corporateName',
                         placeHolder: 'Ingrese el nombre'
                     },
                     {
                         xtype: 'textfield',
                         id: 'cuitTxtField',
                         label: 'CUIT',
+                        name: 'cuit',
                         placeHolder: 'Ingrese el CUIT'
                     },
                     {
                         xtype: 'emailfield',
                         id: 'emailTxtField',
                         label: 'Correo',
+                        name: 'email',
                         placeHolder: 'correo@ejemplo.com'
                     },
                     {
                         xtype: 'textfield',
                         id: 'telefonoTxtField',
                         label: 'Tel',
+                        name: 'phone',
                         placeHolder: 'Ingrese el teléfono'
                     },
                     {
                         xtype: 'textfield',
                         id: 'domicilioTxtField',
                         label: 'Domicilio',
+                        name: 'address',
                         placeHolder: 'Ingrese el domicilio'
                     }
                 ]
             },
             {
                 xtype: 'button',
-                margin: 20,
+                id: 'saveCustomerBtn',
+                margin: '20px 0px 5px 0px',
                 ui: 'confirm',
                 text: 'Guardar'
+            },
+            {
+                id: 'deleteCustomerBtn',
+                xtype: 'button',
+                margin: '0px 0px 0px',
+                ui: 'decline',
+                text: 'Eliminar'
             }
         ]
+    },
+    
+    show: function() {
+      // Oculto el btn de eliminar si está creando un cliente nuevo
+      if (this.getRecord() == null) {
+        Ext.getCmp('deleteCustomerBtn').hide();
+      } else {
+        Ext.getCmp('deleteCustomerBtn').show();
+      }
+      this.callParent();
     }
 
 });

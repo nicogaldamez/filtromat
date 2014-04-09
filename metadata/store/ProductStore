@@ -1,0 +1,64 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "data": null,
+        "designer|userAlias": "productstore",
+        "designer|userClassName": "ProductStore",
+        "groupField": null,
+        "model": "Product",
+        "storeId": "ProductStore"
+    },
+    "mockCfgs": [
+        "data"
+    ],
+    "designerId": "20860749-efc9-45ed-a6a9-b556c5340f7a",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "appendId": false,
+                "url": "http://filtromat-filtromat.rhcloud.com/filtromat/products",
+                "useDefaultXhrHeader": false
+            },
+            "designerId": "0abeb848-2eb9-4cd5-877d-764cd4c5845a",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "idProperty": "key",
+                        "rootProperty": "data"
+                    },
+                    "designerId": "e77ac73e-535b-4d56-93a9-08087e7b1e72"
+                },
+                {
+                    "type": "Ext.data.writer.Json",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "rootProperty": null
+                    },
+                    "designerId": "ae613d6d-e8de-40f1-ad4d-1bcbfd85be5f"
+                }
+            ]
+        }
+    ]
+}

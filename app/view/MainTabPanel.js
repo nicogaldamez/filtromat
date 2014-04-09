@@ -19,8 +19,8 @@ Ext.define('FiltroMat.view.MainTabPanel', {
 
     requires: [
         'FiltroMat.view.CustomersNav',
-        'FiltroMat.view.NewOrder',
-        'FiltroMat.view.Orders',
+        'FiltroMat.view.ProductsNav',
+        'FiltroMat.view.OrdersNav',
         'Ext.navigation.View',
         'Ext.form.Panel',
         'Ext.dataview.List',
@@ -31,20 +31,24 @@ Ext.define('FiltroMat.view.MainTabPanel', {
         items: [
             {
                 xtype: 'customersnav',
+                title: 'Clientes',
                 iconCls: 'user'
             },
             {
-                xtype: 'neworder',
-                iconCls: 'add'
+                xtype: 'ordersnav',
+                title: 'Pedidos',
+                iconCls: 'organize'
             },
             {
-                xtype: 'orders',
-                iconCls: 'organize'
+                xtype: 'productsnav',
+                title: 'Productos',
+                iconCls: 'more'
             }
         ],
         tabBar: {
             docked: 'bottom'
-        }
+        },
+        activeItem: 1
     }
 
 });

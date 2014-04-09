@@ -20,7 +20,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "iconCls": "user"
+                "iconCls": "user",
+                "title": "Clientes"
             },
             "designerId": "c34a87ee-2529-44b9-8040-36524d371981",
             "masterInstanceId": "4f82c516-d4f6-4830-be57-c6d05ae94e1d"
@@ -33,7 +34,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "iconCls": "add"
+                "iconCls": "add",
+                "title": "Nuevo Pedido"
             },
             "designerId": "35727977-080d-456c-bbcd-ccd7fa8d1c10",
             "masterInstanceId": "9f372a98-1387-426f-9aa3-c030ec7ffd0f"
@@ -46,7 +48,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "iconCls": "organize"
+                "iconCls": "organize",
+                "title": "Pedidos"
             },
             "designerId": "f1379fe1-fba6-4589-bb29-298c3dfe4601",
             "masterInstanceId": "7eba907c-db6e-4000-800c-c28990937b42"
@@ -62,6 +65,19 @@
                 "docked": "bottom"
             },
             "designerId": "efd2d2a4-8070-46d9-aaf6-b1d90bea1e78"
+        },
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "iconCls": "info"
+            },
+            "designerId": "9e75619a-8913-4963-8e27-d6212cde1829",
+            "masterInstanceId": "ddc7b295-f0b1-4f68-b2a7-37b7e90994f8"
         }
     ]
 }

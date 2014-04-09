@@ -1,29 +1,66 @@
 {
-    "type": "jsonstore",
+    "type": "Ext.data.Store",
     "reference": {
         "name": "items",
         "type": "array"
     },
     "codeClass": null,
     "userConfig": {
+        "autoLoad": true,
+        "data": null,
         "designer|userAlias": "customerstore",
         "designer|userClassName": "CustomerStore",
+        "groupField": null,
         "model": "Customer",
         "storeId": "CustomerStore"
     },
-    "designerId": "fcfa2b03-e87a-4afd-8a3f-b3e58c2cbba2",
+    "mockCfgs": [
+        "data"
+    ],
+    "designerId": "808bd577-2200-4f9c-bb67-0904fcdf0df7",
     "cn": [
         {
-            "type": "Ext.data.proxy.Ajax",
+            "type": "Ext.util.Grouper",
+            "reference": {
+                "name": "grouper",
+                "type": "object"
+            },
+            "codeClass": null,
+            "designerId": "7e7d6d0e-4f61-4a70-b3a7-097e972d87a3",
+            "cn": [
+                {
+                    "type": "fixedfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|params": [
+                            "item"
+                        ],
+                        "fn": "groupFn",
+                        "implHandler": [
+                            "return item.get('name')[0];"
+                        ]
+                    },
+                    "designerId": "b9b5cc91-a1cd-44e4-99fa-93440cfb3f74"
+                }
+            ]
+        },
+        {
+            "type": "Ext.data.proxy.Rest",
             "reference": {
                 "name": "proxy",
                 "type": "object"
             },
             "codeClass": null,
             "userConfig": {
-                "url": "http://filtromat-filtromat.rhcloud.com/rest/customers"
+                "appendId": false,
+                "url": "http://filtromat-filtromat.rhcloud.com/filtromat/customers",
+                "useDefaultXhrHeader": false
             },
-            "designerId": "fbe47b78-991c-42cd-959f-77a204ed9366",
+            "designerId": "6cea7db6-daaa-47b3-b4a7-5cdfecf2322b",
             "cn": [
                 {
                     "type": "Ext.data.reader.Json",
@@ -33,9 +70,22 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "rootProperty": "customers"
+                        "idProperty": "key",
+                        "rootProperty": "data"
                     },
-                    "designerId": "207289ca-47d0-44f0-93bd-4f6d1a19b34b"
+                    "designerId": "b02893e6-c71f-460c-8c86-a7696da04de7"
+                },
+                {
+                    "type": "Ext.data.writer.Json",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "rootProperty": null
+                    },
+                    "designerId": "9ecacfb0-f3bb-4e12-9100-da0f6c35db1b"
                 }
             ]
         }

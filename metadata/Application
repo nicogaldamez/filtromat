@@ -7,15 +7,21 @@
     "codeClass": null,
     "userConfig": {
         "controllers": [
-            "Customers"
+            "Customers",
+            "Products"
         ],
         "models": [
-            "Customer"
+            "Customer",
+            "Product"
         ],
         "name": "FiltroMat",
+        "requires": [
+            "Ext.MessageBox",
+            "Ext.data.identifier.Uuid"
+        ],
         "stores": [
-            "MyStore",
-            "CustomerStore"
+            "CustomerStore",
+            "ProductStore"
         ],
         "views": [
             "MainTabPanel",
@@ -23,7 +29,10 @@
             "NewCustomer",
             "CustomersNav",
             "Orders",
-            "NewOrder"
+            "NewOrder",
+            "ProductsContainer",
+            "NewProduct",
+            "CustomerDetail"
         ]
     },
     "designerId": "application"

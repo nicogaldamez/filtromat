@@ -1,4 +1,118 @@
+.gray-bkg {
+  background-color: #E8E6EE;
+}
 .x-form-label span {
     font-size: 1em;
     line-height: 25px;
+}
+
+.x-form-fieldset .x-form-fieldset-inner {
+  padding-top: 5px;
+}
+
+.text-muted { color: #999; }
+.text-delete { color: #d9534f; }
+.text-success { color: #5cb85c; }
+
+/*---- FORMS ----*/
+.x-button {
+  background: white;
+  border: 0px;
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  border-radius: 0px;
+}
+
+.x-button-decline .x-button-label {
+  color: #d9534f;
+}
+
+.x-button-confirm .x-button-label {
+  color: #5cb85c;
+}
+
+.x-button.x-button-back .x-button-label, .x-button.x-button-back .x-badge,
+.x-button-normal .x-button-label {
+  font-size: 1em;
+}
+
+.x-form-fieldset-title {
+  font-size: 0.8em;
+}
+
+/*---- ACTION SHEET ----*/
+.x-sheet-action .x-button {
+  border-radius: 0px;
+  border: 0px;
+  border-top: 1px solid #E2E2E2;
+}
+
+.x-sheet-action .x-button:first-child {
+  border-top: 0px;
+}
+
+/*---- DETAIL ----*/
+.detail {
+  padding: 20px;
+  font-family: sans-serif;"Helvetica Neue", Helvetica, Arial;
+}
+
+.detail h3 {
+  font-size: 1.2em;
+  margin: 10px 0px 20px;
+}
+
+.detail dt {
+  color: #157efb;
+  font-family: sans-serif;"Helvetica Neue", Helvetica, Arial;
+  font-weight: 300; 
+  font-size: 0.8em;
+  margin-bottom: 5px;
+}
+
+.detail dd {
+  margin-bottom: 20px;
+  font-size: 0.9em;
+}
+
+
+
+/*---- ORDER ----*/
+.order .left{
+  display: inline-block;
+  width: 50%;
+}
+
+.order .right{
+  display: inline-block;
+  width: 50%;
+  text-align: right;
+  vertical-align: top;
+  margin-top: 2px;
+}
+
+.order .date {
+  margin-bottom: 5px;
+}
+
+.debt {
+  color: red;
+  text-align: right;
+}
+
+.transaction .left{
+  display: inline-block;
+  width: 30%;
+}
+
+.transaction .right{
+  display: inline-block;
+  width: 70%;
+  text-align: right;
+}
+
+.new-transaction .x-field .x-field-input {
+  border: 0px;
+  background-color: transparent;
+  font-weight: 300;
 }

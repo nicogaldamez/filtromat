@@ -25,16 +25,14 @@ Ext.define('FiltroMat.view.NewOrder', {
     ],
 
     config: {
+        id: 'newOrderForm',
         showAnimation: '',
+        title: 'Nuevo Pedido',
         items: [
             {
-                xtype: 'titlebar',
-                docked: 'top',
-                title: 'Nuevo Pedido'
-            },
-            {
                 xtype: 'button',
-                margin: 20,
+                id: 'saveOrderBtn',
+                margin: '20px 0px 0px',
                 ui: 'confirm',
                 text: 'Guardar'
             },
@@ -43,20 +41,79 @@ Ext.define('FiltroMat.view.NewOrder', {
                 centered: false,
                 docked: 'top',
                 items: [
+                
                     {
-                        xtype: 'textfield',
-                        id: 'nombreTxtField1',
-                        label: 'Cliente'
+                        xtype: 'searchfield',
+                        id: 'newOrderCustomerTxt',
+                        label: 'Cliente',
+                        placeHolder: 'Busque un cliente'
                     },
+                    
+                    {
+                        xtype: 'list',
+                        id: 'orderCustomersList',
+                        cls: "x-simulator-popup",
+                        hidden: true,
+                        styleHtmlContent: true,
+                        onItemDisclosure: false,
+                        height: '100px',
+                        width: "100%",
+                        height: '100px',
+                        emptyText: 'Ningún cliente coincide con el filtro',
+                        store: 'CustomerStore',
+                        itemTpl: [
+                            '<div> {name} </div>'
+                        ],
+                        
+                        // CUSTOM
+                        idFromRecord: null, // id del cliente seleccionado
+                        autoCompleteTxtField: null, // referencia al autocomplete
+                    },
+                    
+                    {
+                        xtype: 'searchfield',
+                        id: 'newOrderProductTxt',
+                        label: 'Producto',
+                        placeHolder: 'Busque un producto'
+                    },
+                    
+                    {
+                        xtype: 'list',
+                        id: 'orderProductsList',
+                        cls: "x-simulator-popup",
+                        hidden: true,
+                        styleHtmlContent: true,
+                        onItemDisclosure: false,
+                        height: '100px',
+                        width: "100%",
+                        height: '100px',
+                        emptyText: 'Ningún producto coincide con el filtro',
+                        store: 'ProductStore',
+                        itemTpl: [
+                            '<div> {name} </div>'
+                        ],
+                        
+                        // CUSTOM
+                        idFromRecord: null, // id del producto seleccionado
+                        autoCompleteTxtField: null, // referencia al autocomplete
+                    },
+                    
                     {
                         xtype: 'numberfield',
-                        id: 'razonSocialTxtField1',
+                        id: 'orderQuantityTxt',
                         label: 'Cantidad',
                         labelWrap: true
                     }
                 ]
-            }
+            },
         ]
+    },
+    
+    show: function() {
+      var firstProduct = Ext.getStore('ProductStore').getAt(0);
+      Ext.getCmp('newOrderProductTxt').setValue(firstProduct.data.name);
+      Ext.getCmp('newOrderProductTxt').idFromRecord = firstProduct.data.key;
+      this.callParent();
     }
 
 });

@@ -1,0 +1,50 @@
+{
+    "type": "Ext.navigation.View",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": null,
+        "designer|userClassName": "MyNavigationView"
+    },
+    "designerId": "ddc7b295-f0b1-4f68-b2a7-37b7e90994f8",
+    "cn": [
+        {
+            "type": "linkedinstance",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "title": "Productos"
+            },
+            "designerId": "4ae3e4b8-d8f7-4807-b4cb-28b90fedd159",
+            "masterInstanceId": "bc943324-e721-4145-ba59-5ffcf980e8ee"
+        },
+        {
+            "type": "Ext.navigation.Bar",
+            "reference": {
+                "name": "navigationBar",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top"
+            },
+            "configAlternates": {
+                "items": "array"
+            },
+            "designerId": "abe6add4-2e55-4591-9ea6-fe97fc9774a8",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "items",
+                    "type": "string"
+                }
+            ]
+        }
+    ]
+}

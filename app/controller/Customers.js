@@ -16,32 +16,59 @@
 Ext.define('FiltroMat.controller.Customers', {
     extend: 'Ext.app.Controller',
     alias: 'controller.customers',
+    
+    requires: [
+        'FiltroMat.view.CustomerDetail',
+        'FiltroMat.view.NewCustomer'
+    ],
 
     config: {
         refs: {
+            editCustomerBtn: 'button#editCustomerBtn',
             newCustomerBtn: 'button#newCustomerBtn',
-            newCustomerView: {
-                selector: '#newcustomer',
-                xtype: 'newcustomer'
+            customersNav: '#customersNav',
+            saveCustomerBtn: {
+                selector: 'button#saveCustomerBtn',
+                xtype: 'Ext.Button'
             },
-            customersNav: {
-                selector: 'customersnav',
-                xtype: 'Ext.navigation.Bar'
-            }
+            newCustomerForm: '#newCustomerForm',
+            deleteCustomerBtn: '#deleteCustomerBtn',
+            customersList: '#customersList',
+            searchCustomer: '#searchCustomer',
+            customerDetail: '#customerDetail'
         },
 
         control: {
             "#newCustomerBtn": {
                 tap: 'onNewCustomerTap'
             },
-            "navigationview": {
+            "customersNav": {
                 activeitemchange: 'onNavigationviewActiveItemChange'
+            },
+            "saveCustomerBtn": {
+                tap: 'onSaveCustomerBtnTap'
+            },
+            "customersList": {
+                itemsingletap: 'onListItemSingletap'
+            },
+            "searchCustomer": {
+                keyup: 'onSearchCustomer'
+            },
+            "deleteCustomerBtn": {
+                tap: 'onDeleteCustomerBtnTap'
+            },
+            "#editCustomerBtn": {
+                tap: 'onEditCustomer'
             }
         }
     },
 
+    // Click en el botón (+) de nuevo cliente
     onNewCustomerTap: function(button, e, eOpts) {
-        navView = Ext.ComponentQuery.query('customersnav')[0];
+        var navView = this.getCustomersNav();
+        
+        // Muestro el btn eliminar cliente
+        // Ext.getCmp('deleteCustomerBtn').hide(); 
         navView.push({
                         xtype: 'newcustomer',
                         title: 'Nuevo Cliente'
@@ -49,13 +76,121 @@ Ext.define('FiltroMat.controller.Customers', {
 
     },
 
+    // Cambio de view en la navigation view
     onNavigationviewActiveItemChange: function(container, value, oldValue, eOpts) {
-        var btn = this.getNewCustomerBtn();
-        if (value.id == 'customers') {
-          btn.show();
+        var newCustomerBtn = this.getNewCustomerBtn();
+        var editCustomerBtn = this.getEditCustomerBtn();
+
+        newCustomerBtn.hide();
+        editCustomerBtn.hide();
+        
+        if (value.getItemId() == 'customersList') {
+          newCustomerBtn.show();
+        } else if (value.getItemId() == 'customerDetail') {
+          editCustomerBtn.show();
+        } 
+    },
+
+    // Click en el botón de guardar cliente
+    onSaveCustomerBtnTap: function(button, e, eOpts) {
+        var newCustomerForm = this.getNewCustomerForm();
+        var values = newCustomerForm.getValues();
+        var store = Ext.getStore('CustomerStore');
+        var record = newCustomerForm.getRecord();
+
+        var newRecord = (record === null);
+
+        // Si es un registro nuevo limpio el key
+        if (newRecord) {
+            record = Ext.create("FiltroMat.model.Customer", values);
+            record.id = record.internalId = record.data.key = '';
         } else {
-          btn.hide();
+            record.set(values);
         }
+
+        errs = record.validate();
+        if (!errs.isValid()) {
+            Ext.Msg.alert('Error', 'Verifique que cargó correctamente los campos');
+        } else {
+            me = this;
+            record.save({
+                success: function() {
+                    if (newRecord) {
+                        store.add(record);
+                        var recordData = record;
+                    } else {
+                        // Actualizo el store
+                        var recordData = store.getById(record.id);
+                        recordData.set(values);
+                        me.getCustomerDetail().setData(recordData.data);
+                    }
+
+                    // Vuelvo a la pantalla de clientes
+                    var navView = me.getCustomersNav();
+                    navView.pop();
+                },
+                error: function() {
+                    Ext.Msg.alert('Error', 'Ocurrió un error al guardar el cliente');
+                }
+            });
+
+
+        }
+
+    },
+
+    // Click en algún item de la lista de clientes
+    onListItemSingletap: function(dataview, index, target, record, e, eOpts) {
+        var navView = this.getCustomersNav();
+
+        var customerDetail = Ext.create('FiltroMat.view.CustomerDetail', {itemId:'customerDetail'});
+        customerDetail.setData(record.getData());
+        navView.push(customerDetail);
+    },
+
+    // Keyup. Búsqueda/Filtro de clientes
+    onSearchCustomer: function(textfield, e, eOpts) {
+        var value = textfield.getValue();
+        var store = Ext.getStore('CustomerStore');
+        store.clearFilter();
+        store.filter('name', value);
+    },
+
+    // Click en el botón para eliminar un cliente
+    onDeleteCustomerBtnTap: function(button, e, eOpts) {
+        Ext.Msg.confirm("Eliminar Producto", "¿Está seguro?", function(btn) {
+          if (btn == 'yes') {
+            var data = Ext.getCmp('customerDetail').getData();
+            var store = Ext.getStore("CustomerStore");
+            var record = store.getById(data.key);
+            record.id = record.data.key;
+
+            // Elimino el registro
+            record.erase({
+                 success: function() {
+                    // Vuelvo a la pantalla de clientes si se borra correctamente
+                    var navView = Ext.getCmp('customersNav');
+                    navView.pop();
+                },
+                 error: function() {
+                     Ext.Msg.alert('Error', 'Ocurrió un error al intentar eliminar el cliente');
+                 }
+            });
+          }
+        });
+    },
+
+    // Click en el botón para editar un cliente
+    onEditCustomer: function(button, e, eOpts) {
+        var data = this.getCustomerDetail().getData();
+        var store = Ext.getStore("CustomerStore");
+        var record = store.getById(data.key);
+        record.id = record.data.key;
+
+        var editCustomer = Ext.create('FiltroMat.view.NewCustomer', { itemId: 'newCustomerForm'});
+        editCustomer.setRecord(record);
+        var navView = this.getCustomersNav();
+        navView.push(editCustomer);
     }
 
 });

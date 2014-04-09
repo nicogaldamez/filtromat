@@ -15,7 +15,7 @@
             },
             "viewportOrientation": "portrait"
         },
-        "urlPrefix": "http://localhost:1841/",
+        "urlPrefix": "http://localhost:1841",
         "exportPath": "/Users/nicogaldamez/Documents/Desarrollo/Sencha/Demo",
         "spacesToIndent": 4,
         "sdkPath": "",
@@ -27,12 +27,18 @@
         "displayfield-ExtBox1-1332-inputEl": "Not Installed",
         "displayfield-ExtBox1-1382-inputEl": "Not Installed",
         "lastBuildSelection": {
-            "value": "androidBuild",
-            "display": "Build Android app"
+            "value": "iosSimulate",
+            "display": "Simulate on iOS"
         },
         "displayfield-ExtBox1-1388-inputEl": "Not Installed",
         "displayfield-ExtBox1-1438-inputEl": "Not Installed",
-        "displayfield-ExtBox1-1488-inputEl": "Not Installed"
+        "displayfield-ExtBox1-1488-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1342-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1392-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1442-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1492-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1542-inputEl": "Not Installed",
+        "displayfield-ExtBox1-1642-inputEl": "Not Installed"
     },
     "xdsVersion": "3.0.2",
     "xdsBuild": 1375,
@@ -41,22 +47,28 @@
     "framework": "touch23",
     "viewOrderMap": {
         "view": [
-            "6ca22f77-09fd-4557-9d8c-d790587f63cb",
-            "f38310c4-bc77-4c02-a286-9abc1f34ede9",
             "4f82c516-d4f6-4830-be57-c6d05ae94e1d",
+            "6ca22f77-09fd-4557-9d8c-d790587f63cb",
+            "40bcd546-8163-4026-9910-a346563ab60a",
+            "ddc7b295-f0b1-4f68-b2a7-37b7e90994f8",
+            "bc943324-e721-4145-ba59-5ffcf980e8ee",
+            "f38310c4-bc77-4c02-a286-9abc1f34ede9",
+            "ebb1138b-91b4-43a2-a6d5-cc79494df049",
             "7eba907c-db6e-4000-800c-c28990937b42",
             "9f372a98-1387-426f-9aa3-c030ec7ffd0f",
             "defe65d4-f987-42e3-8df5-ae388c50918f"
         ],
         "store": [
             "808bd577-2200-4f9c-bb67-0904fcdf0df7",
-            "fcfa2b03-e87a-4afd-8a3f-b3e58c2cbba2"
+            "20860749-efc9-45ed-a6a9-b556c5340f7a"
         ],
         "controller": [
-            "a487a950-a3b2-4d1e-8a14-393a2cb2786f"
+            "a487a950-a3b2-4d1e-8a14-393a2cb2786f",
+            "242a7ee3-8e45-4151-ac16-7a0a3a33277a"
         ],
         "model": [
-            "2ee41bd3-1145-4f51-bc98-5d7ad93bd9bb"
+            "2ee41bd3-1145-4f51-bc98-5d7ad93bd9bb",
+            "02ec0d54-43e3-40a4-a0e5-85fe5f85a29d"
         ],
         "resource": [
             "04a088f9-07be-4175-b359-48f3b23c5a8d",

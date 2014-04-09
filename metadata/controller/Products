@@ -1,0 +1,186 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "products",
+        "designer|userClassName": "Products"
+    },
+    "designerId": "242a7ee3-8e45-4151-ac16-7a0a3a33277a",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "productsNav",
+                "selector": "productsnav"
+            },
+            "designerId": "0b3e6ebf-2777-448c-b051-4b685b0a4a76"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "newProductBtn",
+                "selector": "#newProductBtn"
+            },
+            "designerId": "fa678bad-a731-407d-9f14-c89685a08fe1"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "button",
+                "designer|targetType": "Ext.Button",
+                "fn": "onNewProductBtnTap",
+                "implHandler": [
+                    "navView = Ext.ComponentQuery.query('productsnav')[0];",
+                    "navView.push({",
+                    "                xtype: 'newproduct',",
+                    "                title: 'Nuevo Producto'",
+                    "            });",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "faabbe36-bb39-4eb6-933d-c068921ceee1"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "searchProduct",
+                "selector": "#searchProduct"
+            },
+            "designerId": "8793c482-3ead-4f53-8cd7-31965f1844ca"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "searchProduct",
+                "designer|targetType": "Ext.field.Text",
+                "fn": "onSearchProduct",
+                "implHandler": [
+                    "var value = textfield.getValue();",
+                    "var store = Ext.getStore('ProductStore');",
+                    "store.clearFilter();",
+                    "store.filter('name', value);"
+                ],
+                "name": "keyup"
+            },
+            "designerId": "aa71a690-a48e-4f6c-b1a5-6da87235f665"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "saveProductBtn",
+                "selector": "#saveProductBtn",
+                "xtype": "Ext.Button"
+            },
+            "designerId": "5db6178f-dea1-4123-a8c0-e8a93c8554e6"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "saveProductBtn",
+                "designer|targetType": "Ext.Button",
+                "fn": "onSaveProductBtnTap",
+                "implHandler": [
+                    "var newProductForm = this.getNewProductForm();",
+                    "var values = newProductForm.getValues();",
+                    "var store = Ext.getStore('ProductStore');",
+                    "var record = newProductForm.getRecord();",
+                    "",
+                    "var newRecord = (record === null);",
+                    "",
+                    "// Si es un registro nuevo limpio el key",
+                    "if (newRecord) {",
+                    "    record = Ext.create(\"FiltroMat.model.Product\", values);",
+                    "    record.id = record.internalId = record.data.key = '';",
+                    "} else {",
+                    "    record.set(values);",
+                    "}",
+                    "",
+                    "errs = record.validate();",
+                    "if (!errs.isValid()) {",
+                    "    Ext.Msg.alert('Error', 'Verifique que cargó correctamente los campos');",
+                    "} else {",
+                    "    me = this;",
+                    "    record.save({",
+                    "        success: function() {",
+                    "            if (newRecord) {",
+                    "                store.add(record);",
+                    "                var recordData = record;",
+                    "            } else {",
+                    "                // Actualizo el store",
+                    "                var recordData = store.getById(record.id);",
+                    "                recordData.set(values);",
+                    "                me.getCustomerProduct().setData(recordData.data);",
+                    "            }",
+                    "",
+                    "            // Cierro el panel",
+                    "            navView = Ext.ComponentQuery.query('productsnav')[0];",
+                    "            navView.pop();",
+                    "        },",
+                    "        error: function() {",
+                    "            Ext.Msg.alert('Error', 'Ocurrió un error al intentar guardar el producto');",
+                    "        }",
+                    "    });",
+                    "",
+                    "",
+                    "}",
+                    ""
+                ],
+                "name": "tap"
+            },
+            "designerId": "224b8efc-5252-4918-9711-1b8b3b84ea8b"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "newProductForm",
+                "selector": "#newProductForm"
+            },
+            "designerId": "1abe6860-cce4-410b-9485-7e2e22696210"
+        }
+    ]
+}

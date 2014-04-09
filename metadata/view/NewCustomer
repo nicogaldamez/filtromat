@@ -8,7 +8,7 @@
     "userConfig": {
         "designer|userAlias": "newcustomer",
         "designer|userClassName": "NewCustomer",
-        "id": "newcustomer"
+        "id": "newCustomerForm"
     },
     "designerId": "f38310c4-bc77-4c02-a286-9abc1f34ede9",
     "cn": [
@@ -21,6 +21,7 @@
             "codeClass": null,
             "userConfig": {
                 "centered": false,
+                "id": "newCustomerFieldset",
                 "title": null
             },
             "designerId": "6880bd28-6844-4e56-bfa5-02d76a3b3f0d",
@@ -33,8 +34,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "id": "nombreTxtField",
+                        "id": "name",
                         "label": "Nombre",
+                        "name": "name",
                         "placeHolder": "Ingrese el nombre"
                     },
                     "designerId": "e19f87b7-ef22-4d3e-852a-bd58687e4f00"
@@ -50,6 +52,7 @@
                         "id": "razonSocialTxtField",
                         "label": "R. Social",
                         "labelWrap": true,
+                        "name": "corporateName",
                         "placeHolder": "Ingrese el nombre"
                     },
                     "designerId": "99177149-885a-4ad8-b6d1-67feb53667b1"
@@ -64,6 +67,7 @@
                     "userConfig": {
                         "id": "cuitTxtField",
                         "label": "CUIT",
+                        "name": "cuit",
                         "placeHolder": "Ingrese el CUIT"
                     },
                     "designerId": "ef5ca38c-afcb-46bf-adf1-85018a1ea148"
@@ -78,6 +82,7 @@
                     "userConfig": {
                         "id": "emailTxtField",
                         "label": "Correo",
+                        "name": "email",
                         "placeHolder": "correo@ejemplo.com"
                     },
                     "designerId": "d6dbb68e-9a96-477f-83fc-c10586bb385d"
@@ -92,6 +97,7 @@
                     "userConfig": {
                         "id": "telefonoTxtField",
                         "label": "Tel",
+                        "name": "phone",
                         "placeHolder": "Ingrese el teléfono"
                     },
                     "designerId": "b39fb973-7fbf-44bf-8af1-aa3b7f87a4f6"
@@ -106,6 +112,7 @@
                     "userConfig": {
                         "id": "domicilioTxtField",
                         "label": "Domicilio",
+                        "name": "address",
                         "placeHolder": "Ingrese el domicilio"
                     },
                     "designerId": "090879d5-b4ce-4e59-ac85-73fab288aa05"
@@ -121,7 +128,8 @@
             "codeClass": null,
             "userConfig": {
                 "designer|uiInterfaceName": "confirm",
-                "margin": 20,
+                "id": "saveCustomerBtn",
+                "margin": "20 20 10",
                 "text": "Guardar",
                 "ui": "confirm"
             },

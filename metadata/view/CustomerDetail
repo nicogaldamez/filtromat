@@ -1,0 +1,109 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "{",
+            "    name: 'Prueba'",
+            "}"
+        ],
+        "designer|userAlias": "customerdetail",
+        "designer|userClassName": "CustomerDetail",
+        "id": "customerdetail",
+        "layout": "vbox",
+        "scrollable": "vertical"
+    },
+    "mockCfgs": [
+        "data"
+    ],
+    "designerId": "40bcd546-8163-4026-9910-a346563ab60a",
+    "cn": [
+        {
+            "type": "Ext.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "id": "details",
+                "itemId": "mypanel1"
+            },
+            "designerId": "a0561375-1999-40a1-8c73-7cf1b9d6ae7f",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "tpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tpl",
+                        "implHandler": [
+                            "<div id=\"customerDetail\">",
+                            "    <h3> {name} </h3>",
+                            "    ",
+                            "    <dl>        ",
+                            "        <dt> Razón Social </dt>",
+                            "        <dd> {corporateName} </dd>",
+                            "        ",
+                            "        <dt> CUIT </dt>",
+                            "        <dd> {cuit} </dd>",
+                            "        ",
+                            "        <dt> Correo </dt>",
+                            "        <dd> {email} </dd>",
+                            "        ",
+                            "        <dt> Teléfono </dt>",
+                            "        <dd> {phone} </dd>",
+                            "        ",
+                            "        <dt> Domicilio </dt>",
+                            "        <dd> {address} </dd>",
+                            "    </dl>",
+                            "</div>"
+                        ]
+                    },
+                    "designerId": "624fd7bc-0781-4ca3-a4fe-a4d0c9c2c1fa"
+                }
+            ]
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|uiInterfaceName": "decline",
+                "docked": null,
+                "id": "deleteCustomerBtn",
+                "margin": "0px 20px 20px",
+                "text": "Eliminar",
+                "ui": "decline"
+            },
+            "designerId": "313409e3-3c97-42a4-bc1a-5b32c5c29e2b"
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onPanelUpdatedata",
+                "implHandler": [
+                    "var details = this.down('#details');",
+                    "details.setData(newData);"
+                ],
+                "name": "updatedata"
+            },
+            "designerId": "a6b972a5-6ec8-4e03-bdf2-affa0f556b9c"
+        }
+    ]
+}

@@ -639,13 +639,22 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.viewport.WP"
   ],
   "FiltroMat.controller.Customers": [],
+  "FiltroMat.controller.Products": [],
   "FiltroMat.model.Customer": [],
+  "FiltroMat.model.Product": [],
   "FiltroMat.store.CustomerStore": [],
-  "FiltroMat.store.MyStore": [],
+  "FiltroMat.store.ProductStore": [],
+  "FiltroMat.view.CustomerDetail": [],
+  "FiltroMat.view.CustomersContainer": [],
+  "FiltroMat.view.CustomersNav": [],
   "FiltroMat.view.Main": [],
   "FiltroMat.view.MainTabPanel": [],
-  "FiltroMat.view.MyNavigationView": [],
-  "FiltroMat.view.NuevoCliente": []
+  "FiltroMat.view.NewCustomer": [],
+  "FiltroMat.view.NewOrder": [],
+  "FiltroMat.view.NewProduct": [],
+  "FiltroMat.view.Orders": [],
+  "FiltroMat.view.ProductsContainer": [],
+  "FiltroMat.view.ProductsNav": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1367,19 +1376,50 @@ Ext.ClassManager.addNameAliasMappings({
   "FiltroMat.controller.Customers": [
     "controller.customers"
   ],
+  "FiltroMat.controller.Products": [
+    "controller.products"
+  ],
   "FiltroMat.model.Customer": [],
-  "FiltroMat.store.CustomerStore": [],
-  "FiltroMat.store.MyStore": [],
+  "FiltroMat.model.Product": [
+    "model.product"
+  ],
+  "FiltroMat.store.CustomerStore": [
+    "store.customerstore"
+  ],
+  "FiltroMat.store.ProductStore": [
+    "store.productstore"
+  ],
+  "FiltroMat.view.CustomerDetail": [
+    "widget.customerdetail"
+  ],
+  "FiltroMat.view.CustomersContainer": [
+    "widget.customerscontainer"
+  ],
+  "FiltroMat.view.CustomersNav": [
+    "widget.customersnav"
+  ],
   "FiltroMat.view.Main": [
     "widget.main"
   ],
   "FiltroMat.view.MainTabPanel": [
     "widget.maintabpanel"
   ],
-  "FiltroMat.view.MyNavigationView": [
-    "widget.mainnav"
+  "FiltroMat.view.NewCustomer": [
+    "widget.newcustomer"
   ],
-  "FiltroMat.view.NuevoCliente": [
-    "widget.nuevocliente"
+  "FiltroMat.view.NewOrder": [
+    "widget.neworder"
+  ],
+  "FiltroMat.view.NewProduct": [
+    "widget.newproduct"
+  ],
+  "FiltroMat.view.Orders": [
+    "widget.orders"
+  ],
+  "FiltroMat.view.ProductsContainer": [
+    "widget.productscontainer"
+  ],
+  "FiltroMat.view.ProductsNav": [
+    "widget.productsnav"
   ]
 });

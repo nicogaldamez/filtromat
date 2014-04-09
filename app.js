@@ -20,23 +20,40 @@ Ext.Loader.setConfig({
 
 
 Ext.application({
+
+    requires: [
+        'Ext.MessageBox',
+        'Ext.data.identifier.Uuid'
+    ],
     models: [
-        'Customer'
+        'Customer',
+        'Product',
+        'Order',
+        'Transaction'
     ],
     stores: [
-        'MyStore',
-        'CustomerStore'
+        'CustomerStore',
+        'ProductStore',
+        'OrderStore',
+        'TransactionStore'
     ],
     views: [
         'MainTabPanel',
         'CustomersContainer',
         'NewCustomer',
         'CustomersNav',
-        'Orders',
-        'NewOrder'
+        'CustomerDetail',
+        'OrdersContainer',
+        'OrderDetail',
+        'NewOrder',
+        'ProductsContainer',
+        'NewProduct'
+        
     ],
     controllers: [
-        'Customers'
+        'Customers',
+        'Products',
+        'Orders'
     ],
     name: 'FiltroMat',
 

@@ -6,13 +6,13 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "customerscontainer",
-        "designer|userClassName": "CustomersContainer",
-        "id": "customers",
+        "designer|userAlias": "productscontainer",
+        "designer|userClassName": "ProductsContainer",
+        "id": "products",
         "layout": "vbox",
         "style": null
     },
-    "designerId": "6ca22f77-09fd-4557-9d8c-d790587f63cb",
+    "designerId": "bc943324-e721-4145-ba59-5ffcf980e8ee",
     "cn": [
         {
             "type": "Ext.field.Search",
@@ -22,14 +22,14 @@
             },
             "codeClass": null,
             "userConfig": {
-                "id": "searchCustomer",
+                "id": "searchProduct",
                 "itemId": "mysearchfield",
                 "label": null,
                 "layout|flex": null,
-                "placeHolder": "Buscar Cliente",
+                "placeHolder": "Buscar Producto",
                 "styleHtmlContent": true
             },
-            "designerId": "5858d0a8-1227-46fd-9d5e-9195def94cf5"
+            "designerId": "bf4c797a-3636-49fa-b4ec-d6ebead1f55c"
         },
         {
             "type": "Ext.dataview.List",
@@ -40,15 +40,15 @@
             "codeClass": null,
             "userConfig": {
                 "disableSelection": true,
-                "emptyText": "No hay clientes para mostrar",
-                "grouped": true,
-                "id": "customersList",
+                "emptyText": "No hay productos para mostrar",
+                "grouped": false,
+                "id": "productsList",
                 "layout|flex": 1,
                 "loadingText": "Cargando...",
                 "onItemDisclosure": true,
-                "store": "CustomerStore"
+                "store": "ProductStore"
             },
-            "designerId": "30fa54d1-2e9a-4b21-a895-e63dfb8dd289",
+            "designerId": "a22c9929-ecf3-4c49-9b63-c7c9bd8d578a",
             "cn": [
                 {
                     "type": "Ext.XTemplate",
@@ -63,7 +63,7 @@
                             "<div> {name} </div>"
                         ]
                     },
-                    "designerId": "52d5a65c-0247-4a54-92d0-ccddd726ad4b"
+                    "designerId": "0958a940-87a1-45df-8dbb-e2bf30b07506"
                 }
             ]
         }

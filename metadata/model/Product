@@ -1,0 +1,89 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "product",
+        "designer|userClassName": "Product"
+    },
+    "designerId": "02ec0d54-43e3-40a4-a0e5-85fe5f85a29d",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "key"
+            },
+            "designerId": "629145f0-4177-416a-9943-13e146e56cb5"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "name",
+                "type": "string"
+            },
+            "designerId": "fe285d34-7f33-4e7b-b960-eee931f2d7b4"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "description",
+                "type": "string"
+            },
+            "designerId": "d8840165-2e2b-4ea3-b479-11c846b4b4a3"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "currentPrice",
+                "type": "float"
+            },
+            "designerId": "f74dba1e-e3cc-4125-b91d-bf7a8148ce2c"
+        },
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "http://filtromat-filtromat.rhcloud.com/filtromat/products"
+            },
+            "designerId": "df3f6bf3-8b4e-4ea9-95c6-b2e847ccd90d",
+            "cn": [
+                {
+                    "type": "Ext.data.writer.Json",
+                    "reference": {
+                        "name": "writer",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "designerId": "7771b501-f4ca-4b2d-9357-c776f2feff86"
+                }
+            ]
+        }
+    ]
+}

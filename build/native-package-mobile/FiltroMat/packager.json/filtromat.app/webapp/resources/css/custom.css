@@ -2,3 +2,27 @@
     font-size: 1em;
     line-height: 25px;
 }
+
+/*---- CUSTOMER DETAIL ----*/
+#customerDetail {
+  padding: 20px;
+  font-family: sans-serif;"Helvetica Neue", Helvetica, Arial;
+}
+
+#customerDetail h3 {
+  font-size: 1.2em;
+  margin: 10px 0px 20px;
+}
+
+#customerDetail dt {
+  color: #157efb;
+  font-family: sans-serif;"Helvetica Neue", Helvetica, Arial;
+  font-weight: 300; 
+  font-size: 0.8em;
+  margin-bottom: 5px;
+}
+
+#customerDetail dd {
+  margin-bottom: 20px;
+  font-size: 0.9em;
+}

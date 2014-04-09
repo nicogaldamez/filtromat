@@ -13,19 +13,19 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('FiltroMat.view.CustomersNav', {
+Ext.define('FiltroMat.view.ProductsNav', {
     extend: 'Ext.navigation.View',
-    alias: 'widget.customersnav',
+    alias: 'widget.productsnav',
 
     requires: [
-        'FiltroMat.view.CustomersContainer',
+        'FiltroMat.view.ProductsContainer',
         'Ext.navigation.Bar'
     ],
 
     config: {
-        id: 'customersNav',
-        itemId: 'customersNav',
-        defaultBackButtonText: 'Clientes',
+        id: 'productsNav',
+        itemId: 'productsNav',
+        defaultBackButtonText: 'Productos',
         useTitleForBackButtonText: true,
         navigationBar: {
             items: [
@@ -33,13 +33,14 @@ Ext.define('FiltroMat.view.CustomersNav', {
                     xtype: 'button',
                     iconCls: 'add',
                     align: 'right',
-                    id: 'newCustomerBtn',
+                    itemId: 'newProductBtn',
+                    id: 'newProductBtn',
                     text: ''
                 },
                 {
                     xtype: 'button',
                     align: 'right',
-                    id: 'editCustomerBtn',
+                    id: 'editProductBtn',
                     text: 'Editar',
                     hidden: true
                 }
@@ -49,8 +50,8 @@ Ext.define('FiltroMat.view.CustomersNav', {
         },
         items: [
             {
-                xtype: 'customerscontainer',
-                title: 'Clientes'
+                xtype: 'productscontainer',
+                title: 'Productos'
             }
         ]
     }
