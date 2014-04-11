@@ -14,6 +14,7 @@ Ext.define('FiltroMat.view.OrderDetail', {
 
     config: {
         itemId: 'orderDetail',
+        id: 'orderDetail',
         layout: 'vbox',
         cls: 'gray-bkg',
         items: [
@@ -57,7 +58,7 @@ Ext.define('FiltroMat.view.OrderDetail', {
             items: [
               {
                   xtype: 'numberfield',
-                  id: 'name',
+                  id: 'transactionAmount',
                   label: 'Monto',
                   name: 'amount',
                   placeHolder: 'Ingrese el monto',
@@ -65,6 +66,7 @@ Ext.define('FiltroMat.view.OrderDetail', {
               },
               {
                   xtype: 'togglefield',
+                  id: 'transactionIsPayment',
                   name: 'payment',
                   value: true,
                   label: '¿Es un pago?',
@@ -83,16 +85,44 @@ Ext.define('FiltroMat.view.OrderDetail', {
           {
             xtype: 'spacer',
             flex: '1',
-          }
-          
+          },
+          {
+            xtype: 'actionsheet',
+            hidden: true,
+            id: 'ordersActionSheet',
+            items: [
+                {
+                    id: 'markAsDeliveredBtn',
+                    text: 'Marcar como Enviado'
+                },
+                {
+                    id: 'cancelDebtBtn',
+                    text: 'Cancelar Deuda'
+                },
+                {
+                    id: 'deleteOrder',
+                    text: 'Eliminar',
+                    cls: 'x-button-decline'
+                },
+                {
+                    id: 'backActionSheet',
+                    text: 'Volver'
+                }
+            ],
+            defaults: {
+                handler: function (btn, evt) {
+                    Ext.getCmp('ordersActionSheet').hide();
+                } 
+            } 
+          }          
         ]
     },
     
     show: function() {
       var store = Ext.getStore('TransactionStore');
       var order = this.getData();
-      var url = "https://filtromat-filtromat.rhcloud.com/filtromat/orders/" + order.key + "/transactions";
-      store.getProxy().setUrl('https://filtromat-filtromat.rhcloud.com/filtromat/orders/da1c0579-c213-411b-b43a-54fc396d56ae/transactions');
+      var url = Ext.getStore('TransactionStore').buildUrl(order.key);
+      store.getProxy().setUrl(url);
       store.load();
       this.callParent(arguments);
     }

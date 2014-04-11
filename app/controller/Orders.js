@@ -23,24 +23,37 @@ Ext.define('FiltroMat.controller.Orders', {
 
     config: {
         refs: {
+            // Order customer
             customerTxt: '#newOrderCustomerTxt',
             customersList: '#orderCustomersList',
+            // Order product
             productTxt: '#newOrderProductTxt',
             productsList: '#orderProductsList',
+            // Order list
             newOrderForm: '#newOrderForm',
+            newOrderBtn: 'button#newOrderBtn',
+            ordersList: '#ordersList',
+            // New order
             saveBtn: '#saveOrderBtn',
             orderQuantity: '#orderQuantityTxt',
             ordersView: '#ordersView',
-            ordersList: '#ordersList',
-            editOrderBtn: 'button#editOrderBtn',
-            newOrderBtn: 'button#newOrderBtn',
+            // Order detail
+            moreOrderBtn: 'button#moreOrderBtn',
             searchOrder: '#searchOrder',
             ordersNav: '#ordersNav',
             ordersActionSheet: '#ordersActionSheet',
-            deleteOrder: '#deleteOrder'
+            deleteOrder: '#deleteOrder',
+            saveTransactionBtn: 'button#saveTransactionBtn',
+            transactionAmount: 'button#transactionAmount',
+            transactionIsPayment: 'button#transactionIsPayment',
+            cancelDebtBtn: 'button#cancelDebtBtn',
+            markAsDeliveredBtn: 'button#markAsDeliveredBtn'
         },
 
         control: {
+    			'button[pathButtonType=menuitem]': {
+    				itemtap: 'onPathMenuItemTap'
+    			},
           "saveBtn": {
             tap: 'onSaveOrderBtnTap'
           },
@@ -68,11 +81,19 @@ Ext.define('FiltroMat.controller.Orders', {
               activeitemchange: 'onNavigationviewActiveItemChange'
           },
           "ordersList": {
-              itemsingletap: 'onListItemSingletap',
-              itemtaphold: 'onItemTapHold'
+              itemsingletap: 'onListItemSingletap'
           },
           'deleteOrder': {
             tap: 'onDeleteOrder'
+          },
+          'moreOrderBtn': {
+            tap: 'displayMoreOptions'
+          },
+          'saveTransactionBtn': {
+            tap: 'onSaveTransactionBtnTap'
+          },
+          'cancelDebtBtn': {
+            tap: 'onCancelDebtBtnTap'
           }
         }
     },
@@ -86,18 +107,64 @@ Ext.define('FiltroMat.controller.Orders', {
         navView.push(newOrder);
 
     },
+    
+    // Click en el botón para mostrar más opciones
+    displayMoreOptions: function (button, e, eOpts) {
+      //---- Oculto o muestro los botones segun el estado de la orden ---
+      var order = Ext.getCmp('orderDetail').getData();
+      // Está pagado
+      if (order.statusKey == FiltroMat.utils.Config.getDeliveredPaidStatus())
+        this.getCancelDebtBtn().hide();
+      else
+        this.getCancelDebtBtn().show();
+      // Está pendiente de envío?
+      if (order.statusKey == FiltroMat.utils.Config.getPendingDeliveryStatus())
+        this.getMarkAsDeliveredBtn().show();  
+      else
+        this.getMarkAsDeliveredBtn().hide();
+      
+      //---- Muestro el menú ---
+      var actionSheet = Ext.getCmp('ordersActionSheet');
+      actionSheet.show();
+    }, 
+    
+    // Click en el botón para eliminar un cliente
+    onDeleteOrder: function(button, e, eOpts) {
+        Ext.Msg.confirm("Eliminar Pedido", "¿Está seguro?", function(btn) {
+          if (btn == 'yes') {
+            var data = Ext.getCmp('orderDetail').getData();
+            var store = Ext.getStore("OrderStore");
+            var record = store.getById(data.key);
+            record.id = record.data.key;
+
+            // Elimino el registro
+            record.erase({
+                 success: function() {
+                    // Vuelvo a la pantalla de pedidos si se borra correctamente
+                    var navView = Ext.getCmp('ordersNav');
+                    navView.pop();
+                },
+                 error: function() {
+                     Ext.Msg.alert('Error', 'Ocurrió un error al intentar eliminar el pedido');
+                 }
+            });
+          }
+        });
+    },
 
     // Evento que se ejecuta cuando cambia la view del navigation view de pedidos
     onNavigationviewActiveItemChange: function(container, value, oldValue, eOpts) {
         var newOrderBtn = this.getNewOrderBtn();
-        var editOrderBtn = this.getEditOrderBtn();
+        var moreOrderBtn = this.getMoreOrderBtn();
 
         newOrderBtn.hide();
-        editOrderBtn.hide();
+        moreOrderBtn.hide();
         
         if (value.getItemId() == 'ordersList') {
           newOrderBtn.show();
-        } 
+        } else if (value.getItemId() == 'orderDetail') {
+          moreOrderBtn.show();
+        }
     },
     
     // ---------- ORDER FORM ------------
@@ -177,65 +244,37 @@ Ext.define('FiltroMat.controller.Orders', {
       var quantity = this.getOrderQuantity().getValue();
       var url = Ext.getStore('OrderStore').getProxy().getUrl();
       
-      var params = {
+      var params = Ext.JSON.encode({
         customerKey: customer,
-        orderItemResources: Ext.JSON.encode([
+        orderItemResources: [
           {
             productKey: product,
             quantity: quantity
           }
-        ])
-      };
+        ]
+      });
       Ext.Ajax.request({
         url: url,
         method: "POST",
         params: params,
         headers: {
           'Accept': 'application/json',
-          'Authorization': 'Basic Zml0ejpyb3kyMA=='
+          'Authorization': FiltroMat.utils.Config.getAuthorizationToken(),
+          'Content-Type': 'application/json'
         },
-        success: function(){
-          alert("sucessful");
+        success: function(response){
+          store.add(Ext.create("FiltroMat.model.Order", Ext.JSON.decode(response.responseText)));
+          store.load();
+          
+          // Vuelvo a la pantalla de pedidos
+          var navView = Ext.getCmp('ordersNav');
+          navView.pop();
         },
         failure: function(){ 
           Ext.Msg.alert('Error', 'Ocurrió un error al guardar el pedido');
         }
 
       });
-      
-      // var record = Ext.create("FiltroMat.model.Order");
-//       record.customerKey = customer;
-//       record.orderItems().add({
-//             productKey: product,
-//             quantity: quantity
-//       });
-//       record.id = record.internalId = record.data.key = '';
-//       
-//       errs = record.validate();
-//       if (!errs.isValid()) {
-//           Ext.Msg.alert('Error', 'Verifique que cargó correctamente los campos');
-//       } else {
-//           me = this;
-//           record.save({
-//               success: function() {
-//                   if (newRecord) {
-//                       store.add(record);
-//                       var recordData = record;
-//                   } else {
-//                       // Actualizo el store
-//                       var recordData = store.getById(record.id);
-//                       recordData.set(values);
-//                   }
-// 
-//                   // Vuelvo a la pantalla de pedidos
-//                   var navView = this.getOrdersNav();
-//                   navView.push(this.getOrdersView());
-//               },
-//               error: function() {
-//                   Ext.Msg.alert('Error', 'Ocurrió un error al guardar el pedido');
-//               }
-//           });
-//       }
     },
     
     // Keyup. Búsqueda/Filtro de pedidos
@@ -255,13 +294,72 @@ Ext.define('FiltroMat.controller.Orders', {
         navView.push(orderDetail);
     },
     
-    // Al dejar el dedo presionado sobre un pedido se muestra un menú
-    onItemTapHold: function (list, idx, target, record, evt) {
-      var actionSheet = Ext.getCmp('ordersActionSheet');
-      actionSheet.show();
-    }, 
+    // ---------- TRANSACTION ------------
+    onSaveTransactionBtnTap: function(button, e, eOpts) {
+      var transactionAmount = Ext.getCmp('transactionAmount').getValue();
+      var transactionIsPayment = Ext.getCmp('transactionIsPayment').getValue();
+      var store = Ext.getStore('TransactionStore');
+      var order = Ext.getCmp('orderDetail').getData();
+      var url = Ext.getStore('TransactionStore').buildUrl(order.key);
+      
+      var values = {amount: transactionAmount, payment: transactionIsPayment}
+      record = Ext.create("FiltroMat.model.Transaction", values);
+      record.getProxy().setUrl(url);
+      record.data = values;
+      
+      errs = record.validate();
+      if (!errs.isValid()) {
+          Ext.Msg.alert('Error', 'Verifique que cargó correctamente los campos');
+      } else {
+          me = this;
+          record.save({
+              success: function() {
+                  store.add(record);
+                  store.load();
+                  
+                  // Limpio los campos
+                  Ext.getCmp('transactionAmount').setValue('');
+                  Ext.getCmp('transactionIsPayment').setValue(1);
+              },
+              error: function() {
+                  Ext.Msg.alert('Error', 'Ocurrió un error al guardar la transacción');
+              }
+          });
+
+
+      }
+    },
     
-    // onDeleteOrder: function
+    // ---------- TRANSACTION ------------
+    onCancelDebtBtnTap: function(button, e, eOpts) {
+      var order = Ext.getCmp('orderDetail').getData();
+      var url = Ext.getStore('OrderStore').buildStatusUrl(order.key);
+      
+      
+      var values = Ext.JSON.encode({status: FiltroMat.utils.Config.getDeliveredPaidStatus()})
+      
+      Ext.Ajax.request({
+        url: url,
+        method: "POST",
+        params: values,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': FiltroMat.utils.Config.getAuthorizationToken(),
+          'Content-Type': 'application/json'
+        },
+        success: function(response){
+          store.load();
+          
+          // Vuelvo a la pantalla de pedidos
+          var navView = Ext.getCmp('ordersNav');
+          navView.pop();
+        },
+        failure: function(){ 
+          Ext.Msg.alert('Error', 'Ocurrió un error al cancelar el pedido');
+        }
+
+      });
+    },
     
     
 

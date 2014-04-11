@@ -31,8 +31,8 @@ Ext.define('FiltroMat.view.OrdersNav', {
                 {
                     xtype: 'button',
                     align: 'right',
-                    id: 'editOrderBtn',
-                    text: 'Editar',
+                    id: 'moreOrderBtn',
+                    iconCls: 'more',
                     hidden: true
                 }
             ],

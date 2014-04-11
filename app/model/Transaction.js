@@ -46,7 +46,7 @@ Ext.define('FiltroMat.model.Transaction', {
             type: 'rest',
             headers: {
               'Accept': 'application/json',
-              'Authorization': 'Basic Zml0ejpyb3kyMA=='
+              'Authorization': FiltroMat.utils.Config.getAuthorizationToken()
             },
             writer: {
                 type: 'json'

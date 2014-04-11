@@ -52,35 +52,6 @@ Ext.define('FiltroMat.view.OrdersContainer', {
                 ],
                 loadingText: 'Cargando...',
                 store: 'OrderStore'
-            },
-            {
-              xtype: 'actionsheet',
-              hidden: true,
-              id: 'ordersActionSheet',
-              items: [
-                  {
-                      id: 'markAsDelivered',
-                      text: 'Marcar como Enviado'
-                  },
-                  {
-                      id: 'cancelOrder',
-                      text: 'Cancelar Deuda'
-                  },
-                  {
-                      id: 'deleteOrder',
-                      text: 'Eliminar',
-                      cls: 'x-button-decline'
-                  },
-                  {
-                      id: 'backActionSheet',
-                      text: 'Volver'
-                  }
-              ],
-              defaults: {
-                  handler: function (btn, evt) {
-                      Ext.getCmp('ordersActionSheet').hide();
-                  } 
-              } 
             }
         ]
     }

@@ -43,10 +43,10 @@ Ext.define('FiltroMat.model.Product', {
         ],
         proxy: {
             type: 'rest',
-            url: 'https://filtromat-filtromat.rhcloud.com/filtromat/products',
+            url: FiltroMat.utils.Config.getApiUrl() + 'products',
             headers: {
               'Accept': 'application/json',
-              'Authorization': 'Basic Zml0ejpyb3kyMA=='
+              'Authorization': FiltroMat.utils.Config.getAuthorizationToken()
             },
             writer: {
                 type: 'json'

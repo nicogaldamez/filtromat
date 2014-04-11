@@ -23,7 +23,8 @@ Ext.application({
 
     requires: [
         'Ext.MessageBox',
-        'Ext.data.identifier.Uuid'
+        'Ext.data.identifier.Uuid',
+        'FiltroMat.utils.Config'
     ],
     models: [
         'Customer',
@@ -55,6 +56,9 @@ Ext.application({
         'Products',
         'Orders'
     ],
+  	path: {
+  		'Ext.ux': 'libs/ux'
+  	},
     name: 'FiltroMat',
 
     launch: function() {

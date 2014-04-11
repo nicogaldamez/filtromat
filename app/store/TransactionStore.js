@@ -28,7 +28,7 @@ Ext.define('FiltroMat.store.TransactionStore', {
             appendId: false,
             headers: {
               'Accept': 'application/json',
-              'Authorization': 'Basic Zml0ejpyb3kyMA=='
+              'Authorization': FiltroMat.utils.Config.getAuthorizationToken()
             },
             reader: {
                 type: 'json',
@@ -39,5 +39,9 @@ Ext.define('FiltroMat.store.TransactionStore', {
                 type: 'json'
             }
         }
+    },
+    
+    buildUrl: function(orderKey) {
+      return FiltroMat.utils.Config.getApiUrl() + 'orders/' + orderKey + '/transactions'
     }
 });

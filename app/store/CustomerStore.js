@@ -58,12 +58,12 @@ Ext.define('FiltroMat.store.CustomerStore', {
 //         ],
         proxy: {
             type: 'rest',
-            url: 'https://filtromat-filtromat.rhcloud.com/filtromat/customers',
+            url: FiltroMat.utils.Config.getApiUrl() + 'customers',
             useDefaultXhrHeader: false,
             appendId: false,
             headers: {
               'Accept': 'application/json',
-              'Authorization': 'Basic Zml0ejpyb3kyMA=='
+              'Authorization': FiltroMat.utils.Config.getAuthorizationToken()
             },
             reader: {
                 type: 'json',
