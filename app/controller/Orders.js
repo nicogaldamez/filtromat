@@ -94,6 +94,9 @@ Ext.define('FiltroMat.controller.Orders', {
           },
           'cancelDebtBtn': {
             tap: 'onCancelDebtBtnTap'
+          },
+          'markAsDeliveredBtn': {
+            tap: 'onMarkAsDeliveredBtnTap'
           }
         }
     },
@@ -294,6 +297,46 @@ Ext.define('FiltroMat.controller.Orders', {
         navView.push(orderDetail);
     },
     
+    // Cambio de estado un pedido
+    changeOrderStatus: function(newStatus) {
+      var store = Ext.getStore('OrderStore');
+      var order = Ext.getCmp('orderDetail').getData();
+      var url = store.buildStatusUrl(order.key);  
+      var values = Ext.JSON.encode({status: newStatus})
+      
+      Ext.Ajax.request({
+        url: url,
+        method: "POST",
+        params: values,
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': FiltroMat.utils.Config.getAuthorizationToken(),
+          'Content-Type': 'application/json'
+        },
+        success: function(response){
+          store.load();
+          
+          // Vuelvo a la pantalla de pedidos
+          var navView = Ext.getCmp('ordersNav');
+          navView.pop();
+        },
+        failure: function(){ 
+          Ext.Msg.alert('Error', 'Ocurrió un error al cancelar el pedido');
+        }
+
+      });
+    },
+    
+    // Cambio de estado de un pedido a delivered paid
+    onCancelDebtBtnTap: function(button, e, eOpts) {
+      this.changeOrderStatus(FiltroMat.utils.Config.getDeliveredPaidStatus());
+    },
+    
+    // Cambio de estado de un pedido a delivered
+    onMarkAsDeliveredBtnTap: function(button, e, eOpts) {
+      this.changeOrderStatus(FiltroMat.utils.Config.getDeliveredNoPaymentStatus());
+    },
+    
     // ---------- TRANSACTION ------------
     onSaveTransactionBtnTap: function(button, e, eOpts) {
       var transactionAmount = Ext.getCmp('transactionAmount').getValue();
@@ -328,38 +371,7 @@ Ext.define('FiltroMat.controller.Orders', {
 
 
       }
-    },
-    
-    // ---------- TRANSACTION ------------
-    onCancelDebtBtnTap: function(button, e, eOpts) {
-      var order = Ext.getCmp('orderDetail').getData();
-      var url = Ext.getStore('OrderStore').buildStatusUrl(order.key);
-      
-      
-      var values = Ext.JSON.encode({status: FiltroMat.utils.Config.getDeliveredPaidStatus()})
-      
-      Ext.Ajax.request({
-        url: url,
-        method: "POST",
-        params: values,
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': FiltroMat.utils.Config.getAuthorizationToken(),
-          'Content-Type': 'application/json'
-        },
-        success: function(response){
-          store.load();
-          
-          // Vuelvo a la pantalla de pedidos
-          var navView = Ext.getCmp('ordersNav');
-          navView.pop();
-        },
-        failure: function(){ 
-          Ext.Msg.alert('Error', 'Ocurrió un error al cancelar el pedido');
-        }
-
-      });
-    },
+    }
     
     
 

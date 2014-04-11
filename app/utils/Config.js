@@ -7,7 +7,8 @@ Ext.define('FiltroMat.utils.Config', {
         
         // Status
         deliveredPaidStatus : 'DELIVERED_PAID' ,
-        pendingDeliveryStatus : 'PENDING_DELIVERY'
+        pendingDeliveryStatus : 'PENDING_DELIVERY',
+        deliveredNoPaymentStatus: 'DELIVERED_NO_PAYMENT'
     },
 
     constructor: function(config) {
