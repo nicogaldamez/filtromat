@@ -29,7 +29,8 @@ Ext.define('FiltroMat.controller.Products', {
                 tap: 'onNewProductBtnTap'
             },
             "searchProduct": {
-                keyup: 'onSearchProduct'
+                keyup: 'onSearchProduct',
+                clearicontap: 'onSearchProduct'
             },
             "saveProductBtn": {
                 tap: 'onSaveProductBtnTap'

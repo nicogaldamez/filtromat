@@ -69,7 +69,8 @@ Ext.define('FiltroMat.controller.Orders', {
               clearicontap: 'productClearIconTap'
           },
           "searchOrder": {
-              keyup: 'onSearchOrder'
+              keyup: 'onSearchOrder',
+              clearicontap: 'onSearchOrder'
           },
           "productsList": {
             itemtap: 'onProductsListTap'
@@ -247,6 +248,12 @@ Ext.define('FiltroMat.controller.Orders', {
       var quantity = this.getOrderQuantity().getValue();
       var url = Ext.getStore('OrderStore').getProxy().getUrl();
       
+      // Valido nulos
+      if (quantity == null || product == undefined || customer == undefined) {
+        Ext.Msg.alert('Error', 'Por favor verifique que completó todos los campos con valores válidos');
+        return false;        
+      }
+      
       var params = Ext.JSON.encode({
         customerKey: customer,
         orderItemResources: [
@@ -359,6 +366,7 @@ Ext.define('FiltroMat.controller.Orders', {
               success: function() {
                   store.add(record);
                   store.load();
+                  Ext.getStore('OrderStore').load();
                   
                   // Limpio los campos
                   Ext.getCmp('transactionAmount').setValue('');

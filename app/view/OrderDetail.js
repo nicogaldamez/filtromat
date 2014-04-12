@@ -9,7 +9,8 @@ Ext.define('FiltroMat.view.OrderDetail', {
 
     requires: [
         'Ext.dataview.List',
-        'Ext.XTemplate'
+        'Ext.XTemplate',
+        'Ext.field.Toggle'
     ],
 
     config: {
@@ -18,12 +19,13 @@ Ext.define('FiltroMat.view.OrderDetail', {
         layout: 'vbox',
         cls: 'gray-bkg',
         items: [
-          {
+        {
             xtype: 'fieldset',
             flex: 3,
             layout: 'fit',
             title: 'TRANSACCIONES',
             items: [
+              
               {
                 xtype: 'list',
                 id: 'orderDetailList',
@@ -42,19 +44,18 @@ Ext.define('FiltroMat.view.OrderDetail', {
                       '</tpl>',  
                     '</div>',
                   '</div>'
-                ],
-                loadingText: 'Cargando...',
+                 ],
                 store: 'TransactionStore'
               }
             ]
           },
           {
             xtype: 'fieldset',
+            id: 'transactionForm',
             height: 'auto',
             layout: 'fit',
             cls: 'new-transaction',
             title: 'NUEVA TRANSACCIÓN',
-            id: 'newTransactionFieldset',
             items: [
               {
                   xtype: 'numberfield',
@@ -124,6 +125,15 @@ Ext.define('FiltroMat.view.OrderDetail', {
       var url = Ext.getStore('TransactionStore').buildUrl(order.key);
       store.getProxy().setUrl(url);
       store.load();
+      
+      // Si el estado es pagado no muestro el form de Nueva transacción
+      if (order.statusKey == FiltroMat.utils.Config.getDeliveredPaidStatus()) {
+        Ext.getCmp('transactionForm').hide();
+        Ext.getCmp('saveTransactionBtn').hide();
+      } else {
+        Ext.getCmp('transactionForm').show();
+        Ext.getCmp('saveTransactionBtn').show();
+      }
       this.callParent(arguments);
     }
 

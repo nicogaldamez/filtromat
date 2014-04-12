@@ -52,7 +52,8 @@ Ext.define('FiltroMat.controller.Customers', {
                 itemsingletap: 'onListItemSingletap'
             },
             "searchCustomer": {
-                keyup: 'onSearchCustomer'
+                keyup: 'onSearchCustomer',
+                clearicontap: 'onSearchCustomer'
             },
             "deleteCustomerBtn": {
                 tap: 'onDeleteCustomerBtnTap'
@@ -60,6 +61,7 @@ Ext.define('FiltroMat.controller.Customers', {
             "#editCustomerBtn": {
                 tap: 'onEditCustomer'
             }
+            
         }
     },
 
@@ -158,7 +160,7 @@ Ext.define('FiltroMat.controller.Customers', {
 
     // Click en el botón para eliminar un cliente
     onDeleteCustomerBtnTap: function(button, e, eOpts) {
-        Ext.Msg.confirm("Eliminar Producto", "¿Está seguro?", function(btn) {
+        Ext.Msg.confirm("Eliminar Cliente", "¿Está seguro?", function(btn) {
           if (btn == 'yes') {
             var data = Ext.getCmp('customerDetail').getData();
             var store = Ext.getStore("CustomerStore");
