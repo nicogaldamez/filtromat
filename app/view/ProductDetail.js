@@ -25,6 +25,7 @@ Ext.define('FiltroMat.view.ProductDetail', {
 
     config: {
         itemId: 'productDetail',
+        id: 'productDetail',
         layout: 'vbox',
         scrollable: 'vertical',
         items: [

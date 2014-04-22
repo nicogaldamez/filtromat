@@ -56,7 +56,7 @@ Ext.define('FiltroMat.model.Customer', {
         ],
         validations: [
             { type: 'presence', field: 'name' },
-            { type: 'format', field: 'email', matcher: /(^$|^.*@.*\..*$)/ },
+            { type: 'format', field: 'email', matcher: /^$|[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/ },
             { type: 'format', field: 'cuit', matcher: /(^$|^[\d]{2}-[\d]{7,8}-[\d]$)/ },
         ],
         proxy: {

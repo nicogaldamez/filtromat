@@ -19,9 +19,26 @@ Ext.define('FiltroMat.view.OrderDetail', {
         layout: 'vbox',
         cls: 'gray-bkg',
         items: [
+          {
+            flex:1,
+            styleHtmlContent: true,
+            tpl: [
+              '<div class="orderDetail"> ',
+                '{customerName}',
+              '</div>',
+              '<div> ',
+                '<label> Deuda total: </label>',
+                '<tpl if="totalAmount">',
+                  '<span class="text-delete"> ${totalAmount} </span>',
+                '<tpl else>',
+                  '<span class="text-success"> ${totalAmount} </span>',
+                '</tpl>',  
+              '</div>',
+             ].join("")
+         },
         {
             xtype: 'fieldset',
-            flex: 3,
+            flex: 4,
             layout: 'fit',
             title: 'TRANSACCIONES',
             items: [
@@ -30,6 +47,7 @@ Ext.define('FiltroMat.view.OrderDetail', {
                 xtype: 'list',
                 id: 'orderDetailList',
                 disableSelection: true,
+                loadingText: 'Cargando',
                 emptyText: 'No hay transacciones para mostrar',
                 itemTpl: [ 
                   '<div class="transaction">',
@@ -134,6 +152,9 @@ Ext.define('FiltroMat.view.OrderDetail', {
         Ext.getCmp('transactionForm').show();
         Ext.getCmp('saveTransactionBtn').show();
       }
+      
+      this.getAt(0).setData(order);
+      
       this.callParent(arguments);
     }
 

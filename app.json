@@ -31,9 +31,6 @@
       },
       {
          "path": "resources/css/custom.css"
-      },
-      {
-         "path": "resources/css/bootstrap.css"
       }
    ],
    "appCache": {

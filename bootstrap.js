@@ -514,6 +514,17 @@ Ext.ClassManager.addNameAlternateMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
+  "Ext.log.Base": [],
+  "Ext.log.Logger": [],
+  "Ext.log.filter.Filter": [],
+  "Ext.log.filter.Priority": [],
+  "Ext.log.formatter.Default": [],
+  "Ext.log.formatter.Formatter": [],
+  "Ext.log.formatter.Identity": [],
+  "Ext.log.writer.Console": [],
+  "Ext.log.writer.DocumentTitle": [],
+  "Ext.log.writer.Remote": [],
+  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -639,11 +650,19 @@ Ext.ClassManager.addNameAlternateMappings({
     "Ext.viewport.WP"
   ],
   "FiltroMat.controller.Customers": [],
+  "FiltroMat.controller.Orders": [],
   "FiltroMat.controller.Products": [],
   "FiltroMat.model.Customer": [],
+  "FiltroMat.model.Order": [],
+  "FiltroMat.model.OrderItem": [],
   "FiltroMat.model.Product": [],
+  "FiltroMat.model.Transaction": [],
   "FiltroMat.store.CustomerStore": [],
+  "FiltroMat.store.MyStore": [],
+  "FiltroMat.store.OrderStore": [],
   "FiltroMat.store.ProductStore": [],
+  "FiltroMat.store.TransactionStore": [],
+  "FiltroMat.utils.Config": [],
   "FiltroMat.view.CustomerDetail": [],
   "FiltroMat.view.CustomersContainer": [],
   "FiltroMat.view.CustomersNav": [],
@@ -652,7 +671,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "FiltroMat.view.NewCustomer": [],
   "FiltroMat.view.NewOrder": [],
   "FiltroMat.view.NewProduct": [],
-  "FiltroMat.view.Orders": [],
+  "FiltroMat.view.OrderDetail": [],
+  "FiltroMat.view.OrdersContainer": [],
+  "FiltroMat.view.OrdersNav": [],
+  "FiltroMat.view.ProductDetail": [],
   "FiltroMat.view.ProductsContainer": [],
   "FiltroMat.view.ProductsNav": []
 });
@@ -1233,6 +1255,17 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.layout.wrapper.BoxDock": [],
   "Ext.layout.wrapper.Dock": [],
   "Ext.layout.wrapper.Inner": [],
+  "Ext.log.Base": [],
+  "Ext.log.Logger": [],
+  "Ext.log.filter.Filter": [],
+  "Ext.log.filter.Priority": [],
+  "Ext.log.formatter.Default": [],
+  "Ext.log.formatter.Formatter": [],
+  "Ext.log.formatter.Identity": [],
+  "Ext.log.writer.Console": [],
+  "Ext.log.writer.DocumentTitle": [],
+  "Ext.log.writer.Remote": [],
+  "Ext.log.writer.Writer": [],
   "Ext.mixin.Bindable": [],
   "Ext.mixin.Filterable": [],
   "Ext.mixin.Mixin": [],
@@ -1376,19 +1409,33 @@ Ext.ClassManager.addNameAliasMappings({
   "FiltroMat.controller.Customers": [
     "controller.customers"
   ],
+  "FiltroMat.controller.Orders": [
+    "controller.orders"
+  ],
   "FiltroMat.controller.Products": [
     "controller.products"
   ],
   "FiltroMat.model.Customer": [],
+  "FiltroMat.model.Order": [],
+  "FiltroMat.model.OrderItem": [],
   "FiltroMat.model.Product": [
     "model.product"
   ],
+  "FiltroMat.model.Transaction": [],
   "FiltroMat.store.CustomerStore": [
     "store.customerstore"
+  ],
+  "FiltroMat.store.MyStore": [],
+  "FiltroMat.store.OrderStore": [
+    "store.orderstore"
   ],
   "FiltroMat.store.ProductStore": [
     "store.productstore"
   ],
+  "FiltroMat.store.TransactionStore": [
+    "store.transactionstore"
+  ],
+  "FiltroMat.utils.Config": [],
   "FiltroMat.view.CustomerDetail": [
     "widget.customerdetail"
   ],
@@ -1413,8 +1460,17 @@ Ext.ClassManager.addNameAliasMappings({
   "FiltroMat.view.NewProduct": [
     "widget.newproduct"
   ],
-  "FiltroMat.view.Orders": [
-    "widget.orders"
+  "FiltroMat.view.OrderDetail": [
+    "widget.orderdetail"
+  ],
+  "FiltroMat.view.OrdersContainer": [
+    "widget.orderscontainer"
+  ],
+  "FiltroMat.view.OrdersNav": [
+    "widget.ordersnav"
+  ],
+  "FiltroMat.view.ProductDetail": [
+    "widget.productdetail"
   ],
   "FiltroMat.view.ProductsContainer": [
     "widget.productscontainer"

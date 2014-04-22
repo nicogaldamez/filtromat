@@ -34,7 +34,7 @@ Ext.define('FiltroMat.controller.Orders', {
             newOrderBtn: 'button#newOrderBtn',
             ordersList: '#ordersList',
             // New order
-            saveBtn: '#saveOrderBtn',
+            saveBtn: 'button#saveOrderBtn',
             orderQuantity: '#orderQuantityTxt',
             ordersView: '#ordersView',
             // Order detail
@@ -42,7 +42,7 @@ Ext.define('FiltroMat.controller.Orders', {
             searchOrder: '#searchOrder',
             ordersNav: '#ordersNav',
             ordersActionSheet: '#ordersActionSheet',
-            deleteOrder: '#deleteOrder',
+            deleteOrder: 'button#deleteOrder',
             saveTransactionBtn: 'button#saveTransactionBtn',
             transactionAmount: 'button#transactionAmount',
             transactionIsPayment: 'button#transactionIsPayment',
@@ -126,7 +126,7 @@ Ext.define('FiltroMat.controller.Orders', {
         this.getMarkAsDeliveredBtn().show();  
       else
         this.getMarkAsDeliveredBtn().hide();
-      
+        
       //---- Muestro el menú ---
       var actionSheet = Ext.getCmp('ordersActionSheet');
       actionSheet.show();
@@ -146,9 +146,9 @@ Ext.define('FiltroMat.controller.Orders', {
                  success: function() {
                     // Vuelvo a la pantalla de pedidos si se borra correctamente
                     var navView = Ext.getCmp('ordersNav');
-                    navView.pop();
+                    navView.reset();
                 },
-                 error: function() {
+                 failure: function() {
                      Ext.Msg.alert('Error', 'Ocurrió un error al intentar eliminar el pedido');
                  }
             });
@@ -292,7 +292,12 @@ Ext.define('FiltroMat.controller.Orders', {
         var value = textfield.getValue();
         var store = Ext.getStore('OrderStore');
         store.clearFilter();
-        store.filter('customerName', value);
+        store.filter(new Ext.util.Filter({
+            property: 'customerName',
+            value: value,
+            anyMatch: true,
+            caseSensitive: false
+        }));
     },
     
     // Click en algún item de la lista de pedidos
@@ -349,8 +354,21 @@ Ext.define('FiltroMat.controller.Orders', {
       var transactionAmount = Ext.getCmp('transactionAmount').getValue();
       var transactionIsPayment = Ext.getCmp('transactionIsPayment').getValue();
       var store = Ext.getStore('TransactionStore');
+      var orderStore = Ext.getStore('OrderStore');
       var order = Ext.getCmp('orderDetail').getData();
       var url = Ext.getStore('TransactionStore').buildUrl(order.key);
+      
+      // Valido nulos
+      if (transactionAmount == null) {
+        Ext.Msg.alert('Error', 'Por favor verifique que completó todos los campos con valores válidos');
+        return false;        
+      }
+      
+      // El monto es mayor del que se debe?
+      if (parseFloat(transactionAmount) > order.totalAmount ) {
+        Ext.Msg.alert('Error', 'El monto del pago es mayor del que se adeuda');
+        return false;
+      }
       
       var values = {amount: transactionAmount, payment: transactionIsPayment}
       record = Ext.create("FiltroMat.model.Transaction", values);
@@ -366,13 +384,20 @@ Ext.define('FiltroMat.controller.Orders', {
               success: function() {
                   store.add(record);
                   store.load();
-                  Ext.getStore('OrderStore').load();
+                  
+                  orderStore.load({
+                    callback: function(records, operation, success) {
+                      order = orderStore.getById(order.key);
+                      Ext.getCmp('orderDetail').setData(order.data);
+                      Ext.getCmp('orderDetail').getAt(0).setData(order.data);
+                    }
+                  });
                   
                   // Limpio los campos
                   Ext.getCmp('transactionAmount').setValue('');
                   Ext.getCmp('transactionIsPayment').setValue(1);
               },
-              error: function() {
+              failure: function() {
                   Ext.Msg.alert('Error', 'Ocurrió un error al guardar la transacción');
               }
           });

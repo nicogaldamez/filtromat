@@ -95,15 +95,6 @@
   margin-bottom: 5px;
 }
 
-.orderDetail {
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.orderDetail label {
-  font-weight: normal;
-}
-
 .debt {
   color: red;
   text-align: right;
@@ -129,9 +120,4 @@
   border: 0px;
   background-color: transparent;
   font-weight: 300;
-}
-
-.x-mask .x-loading-spinner-outer {
-    min-width: 5em !important;
-    height: 3em !important;
 }

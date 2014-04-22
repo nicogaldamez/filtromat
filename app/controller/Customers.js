@@ -32,7 +32,7 @@ Ext.define('FiltroMat.controller.Customers', {
                 xtype: 'Ext.Button'
             },
             newCustomerForm: '#newCustomerForm',
-            deleteCustomerBtn: '#deleteCustomerBtn',
+            deleteCustomerBtn: 'button#deleteCustomerBtn',
             customersList: '#customersList',
             searchCustomer: '#searchCustomer',
             customerDetail: '#customerDetail'
@@ -131,12 +131,10 @@ Ext.define('FiltroMat.controller.Customers', {
                     var navView = me.getCustomersNav();
                     navView.pop();
                 },
-                error: function() {
+                failure: function() {
                     Ext.Msg.alert('Error', 'Ocurrió un error al guardar el cliente');
                 }
             });
-
-
         }
 
     },
@@ -155,7 +153,12 @@ Ext.define('FiltroMat.controller.Customers', {
         var value = textfield.getValue();
         var store = Ext.getStore('CustomerStore');
         store.clearFilter();
-        store.filter('name', value);
+        store.filter(new Ext.util.Filter({
+            property: 'name',
+            value: value,
+            anyMatch: true,
+            caseSensitive: false
+        }));
     },
 
     // Click en el botón para eliminar un cliente
@@ -172,9 +175,9 @@ Ext.define('FiltroMat.controller.Customers', {
                  success: function() {
                     // Vuelvo a la pantalla de clientes si se borra correctamente
                     var navView = Ext.getCmp('customersNav');
-                    navView.pop();
+                    navView.reset();
                 },
-                 error: function() {
+                 failure: function() {
                      Ext.Msg.alert('Error', 'Ocurrió un error al intentar eliminar el cliente');
                  }
             });
@@ -189,7 +192,7 @@ Ext.define('FiltroMat.controller.Customers', {
         var record = store.getById(data.key);
         record.id = record.data.key;
 
-        var editCustomer = Ext.create('FiltroMat.view.NewCustomer', { itemId: 'newCustomerForm'});
+        var editCustomer = Ext.create('FiltroMat.view.NewCustomer', { itemId: 'newCustomerForm', title: data.name});
         editCustomer.setRecord(record);
         var navView = this.getCustomersNav();
         navView.push(editCustomer);

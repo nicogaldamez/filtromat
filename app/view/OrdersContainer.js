@@ -43,7 +43,7 @@ Ext.define('FiltroMat.view.OrdersContainer', {
                           '<tpl if="totalAmount">',
               		            '<div class="debt"> ${totalAmount} </div>',
               		        '<tpl else>',
-              		            '<div> ${totalAmount} </div>',
+              		            '<div class="payment"> ${totalAmount} </div>',
               		        '</tpl>',
                         '</small>',
                       '</div>',

@@ -15,10 +15,10 @@ Ext.define('FiltroMat.controller.Products', {
         refs: {
             newProductBtn: '#newProductBtn',
             searchProduct: '#searchProduct',
-            saveProductBtn: '#saveProductBtn',
+            saveProductBtn: 'button#saveProductBtn',
             newProductForm: '#newProductForm',
             productDetail: '#productDetail',
-            deleteProductBtn: '#deleteProductBtn',
+            deleteProductBtn: 'button#deleteProductBtn',
             editProductBtn: '#editProductBtn',
             productList: '#productsList',
             productsNav: '#productsNav'
@@ -127,7 +127,7 @@ Ext.define('FiltroMat.controller.Products', {
                     var navView = me.getProductsNav();
                     navView.pop();
                 },
-                error: function() {
+                failure: function() {
                     Ext.Msg.alert('Error', 'Ocurrió un error al intentar guardar el producto');
                 }
             });
@@ -141,7 +141,7 @@ Ext.define('FiltroMat.controller.Products', {
     onDeleteProductBtnTap: function(button, e, eOpts) {
         Ext.Msg.confirm("Eliminar Producto", "¿Está seguro?", function(btn){
           if (btn == 'yes') {
-            var data = this.getProductDetail().getData();
+            var data = Ext.getCmp('productDetail').getData();
             var store = Ext.getStore("ProductStore");
             var record = store.getById(data.key);
             record.id = record.data.key;
@@ -150,10 +150,10 @@ Ext.define('FiltroMat.controller.Products', {
             record.erase({
                  success: function() {
                     // Cierro la ventana de detalle
-                    var navView = this.getProductsNav();
-                    navView.pop();
+                    var navView = Ext.getCmp('productsNav');
+                    navView.reset();
                  },
-                 error: function() {
+                 failure: function() {
                      Ext.Msg.alert('Error', 'Ocurrió un error al intentar eliminar el producto');
                  }
             });
@@ -168,7 +168,7 @@ Ext.define('FiltroMat.controller.Products', {
         var record = store.getById(data.key);
         record.id = record.data.key;
 
-        var editProduct = Ext.create('FiltroMat.view.NewProduct', {itemId: 'newProductForm'});
+        var editProduct = Ext.create('FiltroMat.view.NewProduct', {itemId: 'newProductForm', title: data.name});
         editProduct.setRecord(record);
         var navView = this.getProductsNav();
         navView.push(editProduct);
